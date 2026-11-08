@@ -1,0 +1,5 @@
+*.ily~
+# Finished artifacts, rebuilt by `./build`.
+output/
+# Downloaded reference scans (Bärenreiter edition; see README).
+source/

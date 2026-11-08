@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Usage: ./build [violin2|proof|all] [extra lilypond args]
+#   violin2  the Violin II part  -> output/Forellenquintett violin II part.pdf (default)
+#   proof    the diplomatic Basso -> output/Forellenquintett basso proof.pdf (compare to source/)
+#   all      both
+set -euo pipefail
+
+root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+target="${1:-violin2}"
+[[ $# -gt 0 ]] && shift
+mkdir -p "$root/output"
+cd "$root/arrangement"
+
+# Not -dbackend=null: it crashes during layout on some installs (see ../Danse_macabre).
+case "$target" in
+  violin2) lilypond -o "$root/output/Forellenquintett violin II part" "$@" forellenquintett-violin2.ly ;;
+  proof)   lilypond -o "$root/output/Forellenquintett basso proof" "$@" basso-proof.ly ;;
+  all)     "$root/build" violin2 "$@" && "$root/build" proof "$@" ;;
+  *) echo "usage: build [violin2|proof|all]" >&2; exit 2 ;;
+esac
