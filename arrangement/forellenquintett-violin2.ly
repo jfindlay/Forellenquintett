@@ -17,61 +17,78 @@
 
 \header {
   title = "Quintett in A"
-  subtitle = \markup { \small "Violin II, adapted from the double bass part" }
+  subtitle = \markup { \small "Violino II, adapted from the double bass part" \raise #0.6 \fontsize #-3 "*" }
   opus = "D. 667"
   composer = "Franz Schubert"
+  arranger = \markup {
+    \fontsize #-3
+    \fill-line {
+      \null
+      \null
+      \right-column {
+        "Arrangement November 2026"
+        "Justin Findlay & Claude Sonnet 5.5"
+        " "
+      }
+    }
+  }
+  copyright = \markup {
+    \tiny \center-column {
+      "© 2026 Justin Findlay. Licensed CC BY 4.0: creativecommons.org/licenses/by/4.0/"
+      "Adapted from the double bass part of Bärenreiter 5511 (1975); Schubert's music is in the public domain."
+    }
+  }
   tagline = ##f
 }
 
-\paper { indent = 12\mm }
+% The movements flow on as consecutive scores with no headers or page breaks. Each score's first
+% system takes the indent, which is where the tempo word sits, as in the printed part; only the
+% first score carries the part name, and no staff carries a short name.
+% The part name also runs in the page header, on the side opposite the page number (neither on
+% page 1, where the title block and staff name already say it).
+partName = "Violino II"
 
-\bookpart {
-  \header { piece = "I. Allegro vivace" }
-  \markup \small \italic \wordwrap {
-    For piano and string quartet. Violin II plays the double bass line an octave above the
-    cello (notes below G3 are folded up). Dynamics are the Basso's, as ensemble levels: blend
-    under the cello rather than project.
+\paper {
+  indent = 12\mm
+  oddHeaderMarkup = \markup \fill-line {
+    \unless \on-first-page-of-part \partName
+    \if \should-print-page-number \fromproperty #'page:page-number-string
   }
-  \score {
-    \new Staff \with { instrumentName = "Violin II" shortInstrumentName = "Vn. II" } {
-      \clef treble \compressMMRests \vnTwoI
-    }
-    \partLayout
+  evenHeaderMarkup = \markup \fill-line {
+    \if \should-print-page-number \fromproperty #'page:page-number-string
+    \unless \on-first-page-of-part \partName
   }
 }
-\bookpart {
-  \header { piece = "II. Andante" }
-  \score {
-    \new Staff \with { instrumentName = "Violin II" shortInstrumentName = "Vn. II" } {
-      \clef treble \compressMMRests \vnTwoII
-    }
-    \partLayout
+
+\score {
+  \new Staff \with { instrumentName = \partName } {
+    \clef treble \compressMMRests
+    % \footnote is not rendered from a \header field, so the subtitle carries a literal "*" and the
+    % footnote hangs off the first notehead with an empty (invisible) mark, its text opening with "*".
+    \footnote \markup \null #'(0 . 1)
+      \markup \small \italic \wordwrap {
+        * For piano and string quartet. Violino II plays the double bass line an octave above the
+        cello (notes below G3 are folded up). Dynamics are the Basso's, as ensemble levels: blend
+        under the cello rather than project.
+      }
+      NoteHead
+    \vnTwoI
   }
+  \partLayout
 }
-\bookpart {
-  \header { piece = "III. Scherzo: Presto" }
-  \score {
-    \new Staff \with { instrumentName = "Violin II" shortInstrumentName = "Vn. II" } {
-      \clef treble \compressMMRests \vnTwoIII
-    }
-    \partLayout
-  }
+\score {
+  \new Staff { \clef treble \compressMMRests \vnTwoII }
+  \partLayout
 }
-\bookpart {
-  \header { piece = "IV. Andantino" }
-  \score {
-    \new Staff \with { instrumentName = "Violin II" shortInstrumentName = "Vn. II" } {
-      \clef treble \compressMMRests \vnTwoIV
-    }
-    \partLayout
-  }
+\score {
+  \new Staff { \clef treble \compressMMRests \vnTwoIII }
+  \partLayout
 }
-\bookpart {
-  \header { piece = "V. Allegro giusto" }
-  \score {
-    \new Staff \with { instrumentName = "Violin II" shortInstrumentName = "Vn. II" } {
-      \clef treble \compressMMRests \vnTwoV
-    }
-    \partLayout
-  }
+\score {
+  \new Staff { \clef treble \compressMMRests \vnTwoIV }
+  \partLayout
+}
+\score {
+  \new Staff { \clef treble \compressMMRests \vnTwoV }
+  \partLayout
 }

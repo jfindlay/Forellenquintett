@@ -47,7 +47,7 @@ bassoIIsecB = {
 
 % Bars 36-52: D major, the dotted 16th figures with the A/F#/D/G octave jumps, ending in the long
 % decrescendo on the D/D2 figure.
-bassoIIsecC = {
+bassoIIsecCa = {
   \key d \major
   \barNumberCheck #36
   d8\fp-. r8 fis8-. r8 d8-. r8 |
@@ -58,6 +58,11 @@ bassoIIsecC = {
   \barNumberCheck #41
   fis16. fis,32 fis8->~ fis16. fis,32 fis8->~ fis16. fis,32 fis8-> |
   b,8 r8 d8 r8 b,8 r8 |
+}
+
+% Bars 43-52: the second half of the section, split off so the Vn2 layer can hang the Stadler
+% footnote on bar 43.
+bassoIIsecCb = {
   d16. d,32 d8->~ d16. d,32 d8->~ d16.\decresc d,32\! d8->~ |
   d16. d,32 d8 d,8 r8 d8 r8 |
   g16. g,32 g8 g,8 r8 g8 r8 |
@@ -71,6 +76,8 @@ bassoIIsecC = {
   d16. d,32 d8~ d16. d,32 d8~ d16.\decresc d,32\! d8~ |
   d16. d,32 d8~ d16. d,32 d8~ d16. d,32 d8 |
 }
+
+bassoIIsecC = { \bassoIIsecCa \bassoIIsecCb }
 
 % Bars 53-60: the ppp G pulse (all strings pulse), closing on the fermata of bar 60.
 bassoIIsecD = {

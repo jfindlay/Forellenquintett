@@ -16,7 +16,11 @@ vnTwoIIsecA = \vnLift \bassoIIsecA
 vnTwoIIsecB = \vnLift \bassoIIsecB
 
 % Bars 36-52: lift (the low half of each octave figure folds onto the high half; see above).
-vnTwoIIsecC = \vnLift \bassoIIsecC
+vnTwoIIsecC = {
+  \vnLift \bassoIIsecCa
+  \stadlerFootnoteII
+  \vnLift \bassoIIsecCb
+}
 
 % Bars 53-60: lift (G pulse on the open G string, like the rest of the ppp murmur).
 vnTwoIIsecD = \vnLift \bassoIIsecD

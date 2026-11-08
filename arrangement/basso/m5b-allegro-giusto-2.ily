@@ -146,29 +146,29 @@ bassoVsecBG = {
 % --- 344-359: pp repeated C# then D figure; the part prints bar-counting numbers 1-8 and 1-7.
 bassoVsecBH = {
   \barNumberCheck #344
-  cis4\pp cis8^"1" cis          % 344
-  cis4_> cis8^"2" cis           % 345
-  cis4 cis8^"3" cis             % 346
-  cis4_> cis8^"4" cis           % 347
-  cis4 cis8^"5" cis             % 348
-  cis4_> cis8^"6" cis           % 349
-  cis4 cis8^"7" cis             % 350
-  cis4 cis8^"8" cis             % 351
+  cis4\pp cis8^\markup \small "1" cis          % 344
+  cis4_> cis8^\markup \small "2" cis           % 345
+  cis4 cis8^\markup \small "3" cis             % 346
+  cis4_> cis8^\markup \small "4" cis           % 347
+  cis4 cis8^\markup \small "5" cis             % 348
+  cis4_> cis8^\markup \small "6" cis           % 349
+  cis4 cis8^\markup \small "7" cis             % 350
+  cis4 cis8^\markup \small "8" cis             % 351
   \barNumberCheck #352
   cis8[( d) d-. d-.]            % 352
-  d4-> d8^"1" d                 % 353
-  d4 d8^"2" d                   % 354
-  d4-> d8^"3" d                 % 355
-  d4 d8^"4" d                   % 356
-  d4-> d8^"5" d                 % 357
-  d4 d8^"6" d                   % 358
-  d4 d8^"7" d                   % 359
+  d4-> d8^\markup \small "1" d                 % 353
+  d4 d8^\markup \small "2" d                   % 354
+  d4-> d8^\markup \small "3" d                 % 355
+  d4 d8^\markup \small "4" d                   % 356
+  d4-> d8^\markup \small "5" d                 % 357
+  d4 d8^\markup \small "6" d                   % 358
+  d4 d8^\markup \small "7" d                   % 359
 }
 
 % --- 360-370: last count (8), then the chromatic climb D to A in slurred pairs, back to E.
 bassoVsecBI = {
   \barNumberCheck #360
-  d4 d8^"8" d                   % 360
+  d4 d8^\markup \small "8" d                   % 360
   d8->[( dis) dis-. dis-.]      % 361
   dis8[_\markup \italic "cresc."( e) e-. e-.]  % 362
   e8[( f) f-. f-.]              % 363
@@ -185,23 +185,23 @@ bassoVsecBI = {
 % --- 371-390: A pedal in tied half notes (counts 1-16, tied through), then four rests.
 bassoVsecBJ = {
   \barNumberCheck #371
-  a,2\pp^"1"~                   % 371
-  a,2^"2"~
-  a,2^"3"~
-  a,2^"4"~
-  a,2^"5"~
-  a,2^"6"~                      % 376
+  a,2\pp^\markup \small "1"~                   % 371
+  a,2^\markup \small "2"~
+  a,2^\markup \small "3"~
+  a,2^\markup \small "4"~
+  a,2^\markup \small "5"~
+  a,2^\markup \small "6"~                      % 376
   \barNumberCheck #377
-  a,2^"7"~                      % 377
-  a,2^"8"~
-  a,2^"9"~
-  a,2^"10"~
-  a,2^"11"~
-  a,2^"12"~
-  a,2^"13"~
-  a,2^"14"~
-  a,2^"15"~
-  a,2^"16"                      % 386
+  a,2^\markup \small "7"~                      % 377
+  a,2^\markup \small "8"~
+  a,2^\markup \small "9"~
+  a,2^\markup \small "10"~
+  a,2^\markup \small "11"~
+  a,2^\markup \small "12"~
+  a,2^\markup \small "13"~
+  a,2^\markup \small "14"~
+  a,2^\markup \small "15"~
+  a,2^\markup \small "16"                      % 386
   \barNumberCheck #387
   R2*4                          % 387-390
 }

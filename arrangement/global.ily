@@ -45,14 +45,77 @@ arcoMark = ^\markup \italic "arco"
 % Dynamics the part prints that LilyPond lacks (use as c4\ffz).
 ffz = #(make-dynamic-script "ffz")
 
-% Shared layout for the Vn2 part and the diplomatic proof.
+% Shared layout for the Vn2 part and the diplomatic proof. Like the printed part, bar numbers
+% appear only at the start of each system (never on the movement's first bar).
 partLayout = \layout {
   \context {
     \Score
-    barNumberVisibility = #(every-nth-bar-number-visible 5)
-    \override BarNumber.break-visibility = #end-of-line-invisible
+    barNumberVisibility = #first-bar-number-invisible-and-no-parenthesized-bar-numbers
+    \override BarNumber.break-visibility = #begin-of-line-visible
     \override BarNumber.font-size = -2
     \override MultiMeasureRest.expand-limit = 1
+    \override Footnote.annotation-line = ##f
+  }
+}
+
+% Force the next bar number visible mid-system. The print numbers the first full bar after a
+% variation's pickup eighth (21, 41, ...), which sits on a line the number would not otherwise start.
+showBarNumber = \once \override Score.BarNumber.break-visibility = ##(#t #t #t)
+
+% Part footnotes (Stadler's copy). Both are Vorwort-referenced notes the Basso prints at the foot
+% of the page; the Vn2 part sits an octave above, so the examples are engraved in treble clef at
+% the Vn2 pitch. \footnote prints no mark in front of the text, so the text opens with it.
+footnoteExampleLayout = \layout {
+  indent = 0
+  ragged-right = ##t
+  \context {
+    \Staff
+    \override TimeSignature.stencil = ##f
+  }
+  \context {
+    \Score
+    \omit BarNumber
+  }
+}
+
+% Anchor on the next grob of the given name. The mark floats `offset` above/beside it; the part
+% prints it above the staff, so the y offsets are tuned to the pitch of the anchor note and clear
+% the top staff line (the leader line to the mark is switched off in partLayout).
+partFootnote = #(define-music-function (offset grob text) (number-pair? symbol-list-or-music? markup?)
+  #{ \footnote "*)" #offset #text #grob #})
+
+stadlerFootnote = #(define-music-function (text) (markup?)
+  #{ \partFootnote #'(0 . 5.5) NoteHead #text #})
+
+% II. Andante, bars 43-44.
+stadlerFootnoteII = \stadlerFootnote \markup \small \wordwrap {
+  "*) T. 43-44, in Albert Stadlers Abschrift:"
+  \concat {
+    \score {
+      \new Staff \with { fontSize = #-3 \override StaffSymbol.staff-space = #(magstep -3) } {
+        \clef treble \key d \major \time 3/4
+        d'16.[ d'32 d'8~] d'16.[ d'32 d'8~] d'16.[ d'32 d'8~] \bar "|"
+        d'16.[ d'32 d'8] d'8 r d' r \bar "|"
+      }
+      \footnoteExampleLayout
+    }
+    ";"
+  }
+  "entsprechend in den Takten 49-52, 97, 99, 107, 109, 110-113; vgl. Vorwort."
+}
+
+% I. Allegro vivace, bar 146 (end of the exposition repeat).
+repeatFootnote = \partFootnote #'(0.5 . 4) Rest \markup \small "*) Zum Problem der Wiederholung vgl. Vorwort."
+
+% IV. Andantino, Var. III, bars 72 and 76.
+stadlerFootnoteIV = \stadlerFootnote \markup \small \wordwrap {
+  "*) Takte 72, 76, in Stadlers Abschrift"
+  \score {
+    \new Staff \with { fontSize = #-3 \override StaffSymbol.staff-space = #(magstep -3) } {
+      \clef treble \key d \major \time 2/4
+      d'4. d'8 \bar "|"
+    }
+    \footnoteExampleLayout
   }
 }
 

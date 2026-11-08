@@ -11,6 +11,8 @@
 % - The bar-52 and bar-237 eighths (and 181-188) are triplets: the part prints twelve (or 6+3+3)
 %   unmarked eighths to the bar; the tuplet figure is entered with its "3".
 % - The small ">" after a dynamic (ff>, p>cresc., f>, fp>) is entered as part of a markup.
+% - Bars 1-10 (A pedal) and 11-18 (F pedal) carry the part's printed courtesy counts 1-10 and 1-8
+%   as small text above the notes.
 % - Key signatures: A major (bars 1-180), E-flat major (181-194), C major (195-209), A major (210-).
 
 % --- Bars 1-22: A pedal (1-10), F pedal (11-18), F figure (19-22) -------------------------------
@@ -20,16 +22,28 @@ bassoIsecAa = {
   \time 4/4
   \tempo "Allegro vivace"
   \barNumberCheck #1
-  a,1~ _\markup { \dynamic ff \italic ">" }
-  a,1\p~
-  a,1\pp~
-  a,1~ a,1~ a,1~ a,1~ a,1~ a,1~
-  a,1
+  a,1~^\markup \small "1" _\markup { \dynamic ff \italic ">" }
+  a,1\p~^\markup \small "2"
+  a,1\pp~^\markup \small "3"
+  a,1~^\markup \small "4"
+  a,1~^\markup \small "5"
+  a,1~^\markup \small "6"
+  a,1~^\markup \small "7"
+  a,1~^\markup \small "8"
+  a,1~^\markup \small "9"
+  a,1^\markup \small "10"
 }
 
 bassoIsecAb = {
   \barNumberCheck #11
-  f,1\pp~ f,1~ f,1~ f,1~ f,1~ f,1~ f,1~ f,1
+  f,1\pp~^\markup \small "1"
+  f,1~^\markup \small "2"
+  f,1~^\markup \small "3"
+  f,1~^\markup \small "4"
+  f,1~^\markup \small "5"
+  f,1~^\markup \small "6"
+  f,1~^\markup \small "7"
+  f,1^\markup \small "8"
   f,4\cresc f,2 f,4~
   \barNumberCheck #20
   f,4 f,2 f,4~
@@ -182,7 +196,7 @@ bassoIsecF = {
 }
 
 % --- Bars 125-146: end of the exposition (repeat sign after 146) -----------------------------------
-bassoIsecG = {
+bassoIsecGa = {
   \barNumberCheck #125
   cis8\f r8 dis8 r8 e8 r8 r4
   a,8\p r8 b,8 r8 e8 r8 r4
@@ -206,8 +220,16 @@ bassoIsecG = {
   e4\p r8. b,16 b4-> r8. b,16
   b4-> r8. b,16\cresc b4-> r8. b,16
   b4->\ff r8. b,16 b4-> r8. b,16
-  e4 e,4\fz r2
+  e4 e,4\fz
 }
+
+% The closing half-rest of bar 146, split off so the Vn2 layer can hang the repeat footnote on it
+% (a \footnote anchor only catches a grob at the very moment it is placed).
+bassoIsecGb = {
+  r2
+}
+
+bassoIsecG = { \bassoIsecGa \bassoIsecGb }
 
 % --- Bars 147-164: development opens, dotted C/B pedal, rests with Pfte. cue -----------------------
 bassoIsecH = {

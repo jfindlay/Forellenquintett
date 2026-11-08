@@ -14,7 +14,11 @@ vnTwoIVsecB = \vnLift \bassoIVsecB
 vnTwoIVsecC = \vnLift \bassoIVsecC
 
 % Var. III, bars 61-80: lift (on-beat unison with the cello against the offbeat Vn/Va figures).
-vnTwoIVsecD = \vnLift \bassoIVsecD
+vnTwoIVsecD = {
+  \vnLift \bassoIVsecDa
+  \stadlerFootnoteIV
+  \vnLift \bassoIVsecDb
+}
 
 % Var. IV, bars 81-100: lift (unison with the cello; rising flourish passes above Vn1's dyads).
 vnTwoIVsecE = \vnLift \bassoIVsecE
@@ -29,12 +33,23 @@ vnTwoIVsecG = \vnLift \bassoIVsecG
 % Allegretto close, bars 157-172: lift.
 vnTwoIVsecH = \vnLift \bassoIVsecH
 
+% Variation labels as in the print: each variation starts a new system (at its pickup eighth) and
+% carries its name above the staff, left-aligned.
 vnTwoIV = {
+  \override Score.RehearsalMark.self-alignment-X = #LEFT
+  \override Score.RehearsalMark.font-size = #1
+  \override Score.RehearsalMark.padding = #3
+  \mark \markup "Thema"
   \vnTwoIVsecA
+  \break \mark \markup "Var. I"
   \vnTwoIVsecB
+  \break \mark \markup "Var. II"
   \vnTwoIVsecC
+  \break \mark \markup "Var. III"
   \vnTwoIVsecD
+  \break \mark \markup "Var. IV"
   \vnTwoIVsecE
+  \break \mark \markup "Var. V"
   \vnTwoIVsecF
   \vnTwoIVsecG
   \vnTwoIVsecH

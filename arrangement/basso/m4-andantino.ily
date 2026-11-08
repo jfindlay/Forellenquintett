@@ -50,6 +50,7 @@ bassoIVsecA = {
 bassoIVsecB = {
   r8
   \repeat volta 2 {
+    \showBarNumber
     \barNumberCheck #21
     d8-.\pzMark\pp d'-. a-. fis-. |
     d-. a-. fis-. d-. |
@@ -84,6 +85,7 @@ bassoIVsecB = {
 bassoIVsecC = {
   r8
   \repeat volta 2 {
+    \showBarNumber
     \barNumberCheck #41
     d4\arcoMark\p r |
     R2 |
@@ -115,9 +117,10 @@ bassoIVsecC = {
 }
 
 % Var. III, bars 61-80 (pickup A, then repeat with 1./2. endings).
-bassoIVsecD = {
+bassoIVsecDa = {
   a,8\p
   \repeat volta 2 {
+    \showBarNumber
     \barNumberCheck #61
     d8-. d-. fis-. fis-. |
     d4 a, |
@@ -135,6 +138,10 @@ bassoIVsecD = {
   cis8 cis d16_( cis b, cis) |
   d4( a,8) d |
   cis8 cis cis16( g e cis) |
+}
+
+% Bars 72-80: split off so the Vn2 layer can hang the Stadler footnote on bar 72.
+bassoIVsecDb = {
   d4( d,8) d |
   b,8 b, b, d |
   \barNumberCheck #74
@@ -148,6 +155,8 @@ bassoIVsecD = {
   d4. \bar "||"
 }
 
+bassoIVsecD = { \bassoIVsecDa \bassoIVsecDb }
+
 % Var. IV, bars 81-100 (F major). The pickup A sits after the repeat sign; the repeat covers bars
 % 81-88, and the eighth rest after the repeat bar completes the 3/8 bar 88 on the way out.
 bassoIVsecE = {
@@ -155,7 +164,15 @@ bassoIVsecE = {
   \override TupletBracket.bracket-visibility = ##f
   \repeat volta 2 {
     a8\ff |
+    \showBarNumber
     \barNumberCheck #81
+    % The print beams each bar's triplets in sixes. The \vnBeam-tagged settings beam them in threes
+    % in the Vn2 part (eighth-note beat groups, bars 81-83); basso-proof.ly strips the tag, so the
+    % proof keeps the print's beams.
+    \tag #'vnBeam {
+      \set Timing.baseMoment = #(ly:make-moment 1/8)
+      \set Timing.beatStructure = 1,1,1,1
+    }
     \tuplet 3/2 { d'16-. gis( a) } \tuplet 3/2 { f'-. cis'( d') }
       \tuplet 3/2 { a-. e( f) } \tuplet 3/2 { d-. gis,( a,) } |
     % Bars 82-83: the print gives no tuplet numbers.
@@ -164,6 +181,11 @@ bassoIVsecE = {
       \tuplet 3/2 { a-. e( f) } \tuplet 3/2 { d-.( f d) } |
     \tuplet 6/4 { a,16 cis e a, d f } \tuplet 6/4 { a, e g a, f gis } |
     \revert TupletNumber.stencil
+    % The run up to the a' in bar 84 keeps one beam.
+    \tag #'vnBeam {
+      \set Timing.baseMoment = #(ly:make-moment 1/4)
+      \set Timing.beatStructure = 1,1
+    }
     \barNumberCheck #84
     \tuplet 6/4 { a,16 cis e a cis' e' } a'8 c\pp |
     f,8 r \tuplet 6/4 { f16 f f f f f } |
@@ -198,6 +220,7 @@ bassoIVsecF = {
   \key bes \major
   r8
   \repeat volta 2 {
+    \showBarNumber
     \barNumberCheck #101
     bes,8-.\pp bes-. bes,-. bes-. |
     bes,-. bes-. bes,-. bes-. |

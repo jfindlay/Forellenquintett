@@ -60,23 +60,23 @@ vnTwoVsecBI = \vnLift \bassoVsecBI
 % --- 371-390 lift (A3), hand-entered only to break the 16-bar tie: re-bowed at bar 379 (count 9).
 vnTwoVsecBJ = {
   \barNumberCheck #371
-  a2\pp^"1"~                    % 371
-  a2^"2"~
-  a2^"3"~
-  a2^"4"~
-  a2^"5"~
-  a2^"6"~                       % 376
+  a2\pp^\markup \small "1"~                    % 371
+  a2^\markup \small "2"~
+  a2^\markup \small "3"~
+  a2^\markup \small "4"~
+  a2^\markup \small "5"~
+  a2^\markup \small "6"~                       % 376
   \barNumberCheck #377
-  a2^"7"~                       % 377
-  a2^"8"                        % 378: tie ends; new bow at 379
-  a2^"9"~                       % 379
-  a2^"10"~
-  a2^"11"~
-  a2^"12"~
-  a2^"13"~
-  a2^"14"~
-  a2^"15"~
-  a2^"16"                       % 386
+  a2^\markup \small "7"~                       % 377
+  a2^\markup \small "8"                        % 378: tie ends; new bow at 379
+  a2^\markup \small "9"~                       % 379
+  a2^\markup \small "10"~
+  a2^\markup \small "11"~
+  a2^\markup \small "12"~
+  a2^\markup \small "13"~
+  a2^\markup \small "14"~
+  a2^\markup \small "15"~
+  a2^\markup \small "16"                       % 386
   \barNumberCheck #387
   R2*4                          % 387-390
 }

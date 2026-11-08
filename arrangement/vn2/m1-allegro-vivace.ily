@@ -23,7 +23,11 @@ vnTwoIsecC = \vnLift \bassoIsecC
 vnTwoIsecD = \vnLift \bassoIsecD
 vnTwoIsecE = \vnLift \bassoIsecE
 vnTwoIsecF = \vnLift \bassoIsecF
-vnTwoIsecG = \vnLift \bassoIsecG
+vnTwoIsecG = {
+  \vnLift \bassoIsecGa
+  \repeatFootnote
+  \vnLift \bassoIsecGb
+}
 vnTwoIsecH = \vnLift \bassoIsecH
 vnTwoIsecI = \vnLift \bassoIsecI
 vnTwoIsecJ = \vnLift \bassoIsecJ
