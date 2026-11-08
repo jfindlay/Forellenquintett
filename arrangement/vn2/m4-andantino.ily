@@ -21,13 +21,15 @@ vnTwoIVsecD = {
 }
 
 % Var. IV, bars 81-100: lift (unison with the cello; rising flourish passes above Vn1's dyads).
+% The beams are entered in the Basso layer and are the print's (triplets and sextuplets in threes).
 vnTwoIVsecE = \vnLift \bassoIVsecE
 
 % Var. V, bars 101-127: lift (ostinato under the cello solo; octave leaps flatten where F2 and
 % G-flat2 fold).
 vnTwoIVsecF = \vnLift \bassoIVsecF
 
-% Allegretto, bars 128-156: lift (D-A-E-G eighth pulse, rests for the cue bars).
+% Allegretto, bars 128-156: lift (D-A-E-G eighth pulse; the Viol. cues of bars 133-135 and 154-155
+% come through \vnLift at the printed treble-clef pitch, and the Vn2 staff returns to treble clef).
 vnTwoIVsecG = \vnLift \bassoIVsecG
 
 % Allegretto close, bars 157-172: lift.
@@ -51,6 +53,7 @@ vnTwoIV = {
   \vnTwoIVsecE
   \break \mark \markup "Var. V"
   \vnTwoIVsecF
+  \break
   \vnTwoIVsecG
   \vnTwoIVsecH
 }

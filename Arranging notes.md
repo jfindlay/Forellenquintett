@@ -39,10 +39,13 @@ cello and the piano left hand carry it.
 4. **Collision check.** Compare the lifted line with Vn1, Va, Vc and the piano in the full score.
    If Vn2 would sit above Vn1's line, or sit a unison or second against a sustained melodic note
    for a bar or more, try `\vnHigh`; failing that, rest the passage or hand-re-voice it (rule 7).
-5. **Cue bars rest.** Where the printed Basso is silent and cues `Pfte.`, `Viol.`, `Vc.` or `Va.`,
-   Vn2 rests. Cue notes are not entered.
+5. **Cue bars rest, and the cues are printed.** Where the printed Basso is silent and cues `Pfte.`,
+   `Viol.`, `Vc.` or `Va.`, Vn2 rests, and the cue is typeset over the rests exactly as the Basso
+   prints it: small notes, the same clef (back to treble afterwards) and 8va bracket, the label
+   above. The cue notes are the Basso's printed notation, not lifted or folded (`\bassoCue` in
+   `global.ily`); Vn2 reads them as a guide to the other four players, as the bass player does.
 6. **Pedals and ties stay as printed.** A long tied note is kept as a tie; the violinist
-   re-bows as needed. Re-articulate only where a tie runs past eight bars, and record it.
+   re-bows as needed.
 7. **Hand re-voicing is allowed** for a passage that no lift makes playable or audible: the
    re-voiced Vn2 bars are entered by hand in `vn2/` (never in `basso/`) and justified in the
    table. Typical reasons: double-stop-sized chords the violin cannot play, a leaping fold, a
@@ -118,7 +121,7 @@ One row per section (a phrase or episode, not a bar), with the bars as printed i
 | V | 78-83 | ppp rising semitone figure G-E-F-G, then slurred half notes F-G-A-A | Vc plays above (C#3 repeated, then D3-E3-F3-C#3); Pf LH rests from 79 | high | lift folds E-F-G into E4-F4-G3 (a leaping line); high keeps the semitone ascent (G4 E4 F4 G4 / F4 G4 A4 A4), in contrary motion to Vn1's descent A-G-F-E (unisons at bar 79 F4 and bar 81 G4, Vn2 above Vn1 in 82-83 at ppp) |
 | V | 84-107 | D-F#-A / A-C#-E staccato oom-pa under the canon, then C#-F#-A and C#-E#-G# before the F# pedal | Vc has the tune from bar 87 (A3 above the bass); Pf LH doubles the same oom-pa as chords | lift | plain accompaniment line, D4-D5 range, no fold; Vn1's held A4 in 86 meets Vn2 only on the short A4 16th |
 | V | 108-134 | F# pedal (108-115), G pedal (116-124), then chromatic climb G# to D with slurred pairs, falling to A (134) | Vc plays the upper chord tones of the same quarter + two 8ths pulse; Pf has no bass here (both hands in treble clef 8va) | lift | the pulse reads as an inner voice, F#4 to D5, nothing below G3 |
-| V | 135-154 | tied D pedal for 16 bars (printed counts 1-10 and 11-16), then four bars rest | Vc plays the melody above (B3-C#4-E4 figures) to bar 150, rests 151-154; Pf plays arpeggio triplets in both hands | lift | D4 pedal under the melody; the 16-bar tie is broken once, after bar 142, per rule 6 (two 8-bar ties), counts kept |
+| V | 135-154 | tied D pedal for 16 bars (printed counts 1-10 and 11-16), then four bars rest | Vc plays the melody above (B3-C#4-E4 figures) to bar 150, rests 151-154; Pf plays arpeggio triplets in both hands | lift | D4 pedal under the melody; the 16-bar tie is kept as printed, counts kept |
 | V | 155-164 | B-flat2 fp half note, then B-flat / E-flat / C offbeat figures and a B-flat half note (155-159, 161-163) | Vc plays the rising D3-F-B-flat figure and sustains B-flat3; Pf holds the diminished-seventh chords | lift | B-flat3 to C5, all above G3; the C5 is the top of the figure, still below Vn1 |
 | V | 165-170 | D-F-B-flat rising slur (165-166), A half note, rest, then A2-C#4-E4-A3 with fz and hairpin | Vc plays the same rising slur a third above (F3-B-flat3-D4) and holds a B-flat3 half note in 167; Pf has the rising chord line | lift | lifted line peaks at E5, inside the range; no fold |
 | V | 171-194 | eighth-note triplet drive: D (171-174), B (175-178), E-F#-G ascent (179), A (180), D-A (181), then D, B, E-F#-G, A, D-A again to bar 194 | Vc plays the melody above (D4 A3 / D4 F#4 ...); Va repeats double stops; Pf LH keeps D then B as the real bass | lift | triplet accompaniment at D4 / B3 (lowest), A4-D5 at the peaks, reads as the viola's repeated notes; the cello melody lies above it |
@@ -135,7 +138,7 @@ One row per section (a phrase or episode, not a bar), with the bars as printed i
 | V | 320-343 | Dotted A and E bass figure (A-C#-E, A / E-G#-B, E), mf, staccato 320-327, decresc. to the G# major bars 340-343 | Vc: slurred A-B-C#-E countermelody; Pf LH: low A/E on the beat plus off-beat chord, same harmony | lift | Vn2 reads the bass rhythm as an inner voice under Vn1 and over Vc |
 | V | 344-359 | pp pedal C# quarter plus two eighths, numbers 1-8, then D with numbers 1-7 and accents | Vc: same rhythm on neighbour notes; Pf: slurred treble fragments, no bass | lift | Rhythmic pedal kept at C#4 and D4 below Va and Vn1 |
 | V | 360-370 | Last count (8), chromatic climb D to A in slurred pairs with staccato, cresc., back down to E, decresc. | Vc: parallel chromatic climb above; Pf LH: rests, slurred octave line from 366 | lift | Line stays in D4-A4, nothing crosses Vn1's higher chromatic climb |
-| V | 371-390 | A2 pedal, tied halves counted 1-16, pp, then four rests | Vc: slurred eighth/quarter countermelody; Pf: triplet figures in both hands | lift | A3 pedal kept; the 16-bar tie is re-bowed after bar 378 (count 9) because it runs past eight bars |
+| V | 371-390 | A2 pedal, tied halves counted 1-16, pp, then four rests | Vc: slurred eighth/quarter countermelody; Pf: triplet figures in both hands | lift | A3 pedal kept; the 16-bar tie is kept as printed, counts kept |
 | V | 391-400 | ff F half note, p F-Bb-G arpeggio quarters, ff F half, p arpeggio again, F quarter, rest bars | Vc: tied Bb halves and a D-Bb figure above; Pf LH: Bb chords, RH chromatic runs | lift | F2 folds to F4 so the arpeggio reads F4-Bb3-G4; high would put G5 above Vn1's E5 sustain |
 | V | 401-408 | Rising arpeggios A-C-F and G#-B-E with hairpins, E half, pp triplet-quaver A pulse | Vc: parallel arpeggios above, then the same triplet pulse in dyads; Pf LH: arpeggios in 8ths | lift | Vn2 stays an octave above the Vc's pulse and below Vn1 |
 | V | 409-430 | Triplet-quaver pedal A (409-410), F# (411-414), B-C#-D, E, A-E, f from 418, repeated 421-430, ends A quarter | Vc: same triplet pulse in dyads; Pf LH: staccato chord figure | lift | F#2 folds to F#4 in 411-414 and 423-426 (a pedal pulse, contour unimportant); high would put E5/A5 in Vn1's melody |

@@ -12,7 +12,8 @@ source/                   INPUT: downloaded scans (git-ignored; see below)
 arrangement/              the only hand-written music
   forellenquintett-violin2.ly  main score: one bookpart per movement
   basso-proof.ly          diplomatic Basso (bass clef, written pitch) for proofreading
-  global.ily              \vnLift / \vnHigh (octave lift + fold into G3-A5), shared marks, layout
+  global.ily              \vnLift / \vnHigh (octave lift + fold into G3-A5), \bassoCue (cue notes
+                          from the other parts, as printed), shared marks, layout
   basso/m1..m5*.ily       LAYER 1: the Basso as printed, in section variables (bassoI..V)
   vn2/m1..m5*.ily         LAYER 2: Violin II built from layer 1; all arranging decisions
 Arranging notes.md        premise, rules, decision table (83 sections), review flags
@@ -38,7 +39,9 @@ copyright. Schubert's music is public domain.
 The Basso is entered in the part's own bass clef at written pitch (layer 1), so each bar can be
 proofread against the scan unchanged. Layer 2 (`vn2/`) builds Violin II section by section: each
 section is `\vnLift` of the matching Basso section unless the notes record a reason for `\vnHigh`,
-a rest or a hand re-voicing. The part prints a bar number at the start of every system; each
+a rest or a hand re-voicing. Beams are entered in layer 1 to match the print, and so are the cue
+notes the Basso prints over its rests (`\bassoCue`): they pass through the lift at printed pitch and
+clef, so Violin II shows them as the bass part does. The part prints a bar number at the start of every system; each
 movement file anchors on those with `\barNumberCheck`, and a clean compile reports zero warnings.
 
 ## Build

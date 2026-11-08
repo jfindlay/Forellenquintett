@@ -11,6 +11,11 @@
 % 1 with a one-beat pickup (cue note and rest); its first half ends mid-bar 16 (a4 r4 :|: r4)
 % and its endings (r4 r4 / r4 r8) are completed by the pickups of the Trio and of the Scherzo
 % da capo respectively.
+%
+% Cues: the Scherzo prints none. The Trio prints Viol. cues (treble clef, no 8va, entered with
+% \bassoCue) in the pickup and bars 1-4 and in bars 62-65 with both endings. The cue notes are
+% in \voiceOne (stems, slurs and ties up, as printed) and the whole-bar rests are the Basso's.
+% Beaming: the movement has no beamed eighths; only the sixteenth pair after bar 65 is beamed.
 
 % Combined dynamics printed as two marks side by side.
 fsfIII = _\markup { \dynamic f \hspace #0.3 \dynamic sf }
@@ -85,7 +90,7 @@ bassoIIIsecD = {
   \barNumberCheck #59
 }
 
-% Bars 59-79: rests and sf bursts (cues omitted, bars 59-61 rest), chromatic G, closing ff.
+% Bars 59-79: rests and sf bursts (the Scherzo prints no cues), chromatic G, closing ff.
 bassoIIIsecE = {
   R2.*3 |  % bars 59-61
   e4\sf e e |
@@ -148,16 +153,20 @@ bassoIIIsecJ = {
 
 % --- Trio (D major; bar numbers restart at 1) -----------------------------------------------
 
-% Trio pickup and bars 1-16. Pickup: Viol. cue (not entered) with a quarter rest. Bars 1-4 rest
-% (cue Viol.). The part has an unprinted start-of-section repeat here; the first half ends with
-% a4 r4 (two beats) and the repeat sign, with a r4 after it completing bar 16.
+% Trio pickup and bars 1-16. The Viol. cue (treble clef, stems up, slurs above) runs from the
+% pickup through bar 4 over the Basso's quarter rest and four whole-bar rests. The part has an
+% unprinted start-of-section repeat here; the first half ends with a4 r4 (two beats) and the
+% repeat sign, with a r4 after it completing bar 16.
 bassoIIIsecK = {
   \key d \major
   \set Score.currentBarNumber = #0
   \partial 4
-  r4 |  % pickup (cue Viol.)
-  \barNumberCheck #1
-  R2.*4 |  % bars 1-4 (cue Viol.)
+  \bassoCue "treble"
+    { \voiceOne fis''4-.\violMark |
+      \barNumberCheck #1
+      fis''2( e''4) | e''2( d''4) | d''2( a'4) | a'2 r4 | }
+    { r4 | R2. | R2. | R2. | R2. | }
+  \barNumberCheck #5
   a2.\p~ | a2. | a2.->( | d4) r r |
   R2.*4 |  % bars 9-12
   \barNumberCheck #13
@@ -196,7 +205,7 @@ bassoIIIsecN = {
   R2.^\markup \italic "G.P." |  % bar 49
 }
 
-% Bars 50-65: D-G slurred phrase, A staccato, rests (cues Viol., bars 62-65).
+% Bars 50-65: D-G slurred phrase, A staccato, rests, then the Viol. cue of bars 62-65.
 bassoIIIsecO = {
   r4 r d-.\p |
   d2( fis4) | fis2( b4) | b2( g4) | g2.-> |
@@ -204,22 +213,30 @@ bassoIIIsecO = {
   \barNumberCheck #56
   a4-. a-. a-. | a-. a-. a-. | a-. r r |
   R2.*3 |  % bars 59-61
-  R2.*4 |  % bars 62-65 (cue Viol., trill)
+  % Bars 62-65: Viol. cue (printed pitch, no 8va): D6 half slurred to B5, then a trilled A5
+  % tied through three bars with the G#5-A5 sixteenth pair closing bar 65; four whole-bar rests.
+  \bassoCue "treble"
+    { \voiceOne
+      d'''2->\violMark( b''4) | a''2.\startTrillSpan~ | a''2.~ |
+      \afterGrace a''2. { gis''16\stopTrillSpan[ a''] } | }
+    { R2. | R2. | R2. | R2. | }
   \barNumberCheck #66
 }
 
-% First ending (bar 66): two beats of rest (cue Viol.); the pickup r4 completes the bar.
+% First ending (bar 66): Viol. cue D5 and a quarter rest over two beats of Basso rest; the pickup
+% r4 of the Trio completes the bar.
 bassoIIIsecP = {
   \partial 2
-  r4 r4 |
+  \bassoCue "treble" { \voiceOne d''4 r4 } { r4 r4 } |
 }
 
-% Second ending (bar 66): 1.5 beats of rest, completed by the Scherzo da capo's pickup.
+% Second ending (bar 66): Viol. cue D5 and an eighth rest over 1.5 beats of Basso rest, completed
+% by the Scherzo da capo's pickup.
 bassoIIIsecQ = {
   \set Score.currentBarNumber = #66
   \partial 4.
   \barNumberCheck #66
-  r4 r8_\markup \italic \right-column { "Scherzo da capo," "senza ripetizione" }
+  \bassoCue "treble" { \voiceOne d''4 r8 } { r4 r8_\markup \italic \right-column { "Scherzo da capo," "senza ripetizione" } }
   \bar "|."
 }
 

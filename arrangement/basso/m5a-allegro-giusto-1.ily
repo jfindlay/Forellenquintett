@@ -1,16 +1,26 @@
 \version "2.24.3"
 % V. Allegro giusto, 2/4, A major: bars 1-236 (up to and including the D.C. repeat at 236).
 % Layer 1: the Basso as printed (bass clef, written pitch). The printed `1`..`16` counts over the
-% long tied D (bars 135-150) are entered as small text above the notes.
+% long tied D (bars 135-150) are entered as small text above the notes. Cue bars (Vc. 1-2, 27-28
+% and 51-52, Pfte. 25-26, Va. 203-204) are entered as printed with \bassoCue over the Basso's own
+% rests; the printed cue stems point up (down in the Pfte. bars 25-26, where the beam is below).
+% The Basso's rests under a cue are printed as whole-bar rests (a hanging block), so they are
+% `R2 | R2` (one per bar, which \compressMMRests does not merge), not half rests `r2`.
+% Beams follow the print: the 2/4 bars of four eighths (and the 8.-32nd-32nd-8-8 figure) carry
+% one beam across the whole bar, written as explicit [ ].
 
 % ---------------------------------------------------------------------------------------------
-% Bars 1-10: introduction. Vc cue (bars 1-2) rests; pizzicato E/A figure; four bars rest.
+% Bars 1-10: introduction. Vc cue (bars 1-2) over rests; pizzicato E/A figure; four bars rest.
 bassoVsecAA = {
   \key a \major
   \time 2/4
   \tempo "Allegro giusto"
   \barNumberCheck #1
-  R2*2   % Vc. cue (E3 tied half notes)
+  % Vc. cue, bass clef (no clef sign printed): accented E tied across the barline, stems up and
+  % the tie above as printed.
+  \bassoCue "bass"
+    { \stemUp \tieUp e2^>^\vcMark~ | e2 }
+    { R2 | R2 }
   \barNumberCheck #3
   e,4-.\pp e4-. |
   a,4-. e4-. |
@@ -21,27 +31,38 @@ bassoVsecAA = {
   \bar ".|:"
 }
 
-% Bars 11-26: first theme (repeated). Bars 25-26 rest under Pfte. cue.
+% Bars 11-26: first theme (repeated). Bars 25-26: Pfte. cue over the Basso's rests.
 bassoVsecAB = {
   \barNumberCheck #11
   a,4-. e4-. |
   a,4-. a4-. |
-  d8->( fis8) fis8-. fis8-. |
+  d8->[( fis8) fis8-. fis8-.] |
   fis4( b,8) r8 |
   e,4-. e4-. |
   e,4-. e4-. |
-  cis8->( e8) e8-. e8-. |
+  cis8->[( e8) e8-. e8-.] |
   \barNumberCheck #18
   e4( a,8) r8 |
   R2*6
-  R2*2   % Pfte. cue (bars 25-26)
+  % Pfte. cue (right hand, treble clef): dyads, stems and slurs down as printed (the beam is
+  % below). The label sits below the cue in the print; the cue's own eighth rest closes bar 26.
+  \bassoCue "treble"
+    {
+      \stemDown \slurDown
+      <cis'' e'>8_>[(\tweak direction #DOWN \pfteMark <b' d'>) <b' d'>_. <b' d'>_.] |
+      <b' d'>4( <a' cis'>8) r8
+    }
+    { \override MultiMeasureRest.staff-position = #2 R2 | R2 }
   \bar ":|."
 }
 
 % Bars 27-36: the introduction again (bars 1-10).
 bassoVsecAC = {
   \barNumberCheck #27
-  R2*2   % Vc. cue
+  % Vc. cue as in bars 1-2.
+  \bassoCue "bass"
+    { \stemUp \tieUp e2^>^\vcMark~ | e2 }
+    { R2 | R2 }
   \barNumberCheck #29
   e,4-.\pp e4-. |
   a,4-. e4-. |
@@ -60,12 +81,15 @@ bassoVsecAD = {
   e4 e4 |
   a4 g4->\fz~ |
   \barNumberCheck #41
-  g8 c'8-. c'8-. c'8-. |
+  g8[ c'8-. c'8-. c'8-.] |
   c'4 b4 |
   c'4 g4 |
   c'4 r4 |
   R2*6
-  R2*2   % Vc. cue (bars 51-52)
+  % Vc. cue, bass clef, stems up as printed: G4 leaps down to G3 (both natural), then C natural.
+  \bassoCue "bass"
+    { \stemUp g'4\vcMark g | c' r }
+    { R2 | R2 }
 }
 
 % Bars 53-65: the ff phrase again, then five bars rest.
@@ -75,7 +99,7 @@ bassoVsecAE = {
   e4 e4 |
   e4 e4 |
   a4 g4->\fz~ |
-  g8 c'8-. c'8-. c'8-. |
+  g8[ c'8-. c'8-. c'8-.] |
   c'4 b4 |
   c'4 g4 |
   \barNumberCheck #60
@@ -87,16 +111,16 @@ bassoVsecAE = {
 bassoVsecAF = {
   \barNumberCheck #66
   r4 f4->\fp~ |
-  f8 d8-.( e8-. f8-.) |
+  f8[ d8-.( e8-. f8-.)] |
   e4 r4 |
   R2 |
   r4 d4->\fp~ |
   \barNumberCheck #71
-  d8 b,8-.( c8-. d8-.) |
+  d8[ b,8-.( c8-. d8-.)] |
   c4 r4 |
   R2 |
   r4 bes,4->\pp^\markup \italic "diminuendo"~ |
-  bes,8 g,8-.( a,8-. bes,8-.) |
+  bes,8[ g,8-.( a,8-. bes,8-.)] |
   a,4 r4 |
   R2 |
 }
@@ -105,7 +129,7 @@ bassoVsecAF = {
 bassoVsecAG = {
   \barNumberCheck #78
   r4 g,4->\ppp~ |
-  g,8 e,8-.( f,8-. g,8-.) |
+  g,8[ e,8-.( f,8-. g,8-.)] |
   f,2( |
   g,2 |
   a,2~ |
@@ -157,7 +181,7 @@ bassoVsecAI = {
   \barNumberCheck #114
   fis4 fis8 fis |
   fis4 fis8 fis |
-  fis8( g8) g8-. g8-. |
+  fis8[( g8) g8-. g8-.] |
   g4-> g8 g |
   g4 g8 g |
   g4-> g8 g |
@@ -167,17 +191,17 @@ bassoVsecAI = {
   g4 g8 g |
   g4 g8 g |
   g4 g8 g |
-  g8->( gis8) gis8-. gis8-. |
-  gis8( a8) a8-. a8-.  _\markup \italic "cresc." |
-  a8( bes8) bes8-. bes8-. |
+  g8->[( gis8) gis8-. gis8-.] |
+  gis8[( a8) a8-. a8-.]  _\markup \italic "cresc." |
+  a8[( bes8) bes8-. bes8-.] |
   \barNumberCheck #128
-  bes8( b8) b8-. b8-. |
-  b8( c'8) c'8-. c'8-. |
-  c'8( cis'8) cis'8-. cis'8-. |
-  cis'8( d'8) d'8-. d'8-. |
-  d'8( g8) g8-. g8-. _\markup \italic "decresc." |
-  g8( a8) a8-. a8-. |
-  a8( a,8) a,8-. a,8-. |
+  bes8[( b8) b8-. b8-.] |
+  b8[( c'8) c'8-. c'8-.] |
+  c'8[( cis'8) cis'8-. cis'8-.] |
+  cis'8[( d'8) d'8-. d'8-.] |
+  d'8[( g8) g8-. g8-.] _\markup \italic "decresc." |
+  g8[( a8) a8-. a8-.] |
+  a8[( a,8) a,8-. a,8-.] |
 }
 
 % Bars 135-154: D pedal, sixteen tied bars (printed 1-10, 1-16 counts), then four bars rest.
@@ -271,7 +295,16 @@ bassoVsecAN = {
   \barNumberCheck #195
   R2*8
   \barNumberCheck #203
-  R2*2   % Va. cue (bars 203-204)
+  % Va. cue, bass clef (no clef sign printed): two bars of eighth triplets, beamed 3+3 (the first
+  % triplet opens with an eighth rest); F# E D C# B slurred from an accented F#, then six A's.
+  % The part prints no triplet number or bracket here.
+  \bassoCue "bass"
+    {
+      \voiceOne \omit TupletNumber \omit TupletBracket
+      \tuplet 3/2 { r8 fis'8^>\vaMark( e'8 } \tuplet 3/2 { d'8 cis'8 b8) } |
+      \tuplet 3/2 { a8 a a } \tuplet 3/2 { a a a }
+    }
+    { R2 | R2 }
 }
 
 % Bars 205-212: slurred half-note line D-E, C#-D, G-G#, A-A.

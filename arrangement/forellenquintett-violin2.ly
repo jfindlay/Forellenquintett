@@ -18,7 +18,6 @@
 \header {
   title = "Quintett in A"
   subtitle = \markup { \small "Violino II, adapted from the double bass part" \raise #0.6 \fontsize #-3 "*" }
-  opus = "D. 667"
   composer = "Franz Schubert"
   arranger = \markup {
     \fontsize #-3
@@ -75,6 +74,9 @@ partName = "Violino II"
     \vnTwoI
   }
   \partLayout
+  % The opus sits in this score's header, not the book's, so it prints once (title page) and the
+  % later scores do not repeat it.
+  \header { opus = "D. 667" }
 }
 \score {
   \new Staff { \clef treble \compressMMRests \vnTwoII }

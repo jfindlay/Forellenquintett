@@ -2,7 +2,9 @@
 % Movement III: Scherzo, Trio, Scherzo da capo (Violin II from the Basso). Every section is
 % \vnLift (nothing in the Basso falls below written G2, so no fold is needed) except
 % vnTwoIIIsecG. The \barNumberChecks of the Basso sections ride along, so the compile gate
-% still guards the numbering.
+% still guards the numbering. The Trio's Viol. cues (pickup and bars 1-4, bars 62-65, both
+% endings) flow through \vnLift unchanged: the cue notes keep the printed pitch and the staff
+% returns to the treble clef after each cue.
 
 % Bars 0-10: opening A theme.
 vnTwoIIIsecA = \vnLift \bassoIIIsecA
@@ -52,7 +54,13 @@ vnTwoIIIsecO = \vnLift \bassoIIIsecO
 vnTwoIIIsecP = \vnLift \bassoIIIsecP
 vnTwoIIIsecQ = \vnLift \bassoIIIsecQ
 
+% Movement and section labels as in the print: "Scherzo" over the Presto, and "Trio" starting a
+% new system, left-aligned above the staff like the variation labels of movement IV.
 vnTwoIII = {
+  \override Score.RehearsalMark.self-alignment-X = #LEFT
+  \override Score.RehearsalMark.font-size = #1
+  \override Score.RehearsalMark.padding = #3
+  \mark \markup "Scherzo"
   \vnTwoIIIsecA
   \vnTwoIIIsecB
   \vnTwoIIIsecC
@@ -67,6 +75,7 @@ vnTwoIII = {
     { \vnTwoIIIsecI }
     { \vnTwoIIIsecJ }
   }
+  \break \mark \markup "Trio"
   \repeat volta 2 { \vnTwoIIIsecK }
   \repeat volta 2 {
     \vnTwoIIIsecL

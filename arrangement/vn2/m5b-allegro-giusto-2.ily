@@ -1,8 +1,10 @@
 \version "2.24.3"
 % V. Allegro giusto bars 237-end: Violin II derived from basso/m5b-allegro-giusto-2.ily.
 % Default \vnLift. Hand-entered: BA, BB, BC (the B-octave leap would put the upper B above Vn1's
-% G4-A4 melody; the upper B drops to B3) and BJ (the 16-bar tied A is re-bowed after bar 378).
+% G4-A4 melody; the upper B drops to B3).
 % Pitches below are absolute (c = C3, c' = C4), so the hand bars read as sounding Vn2 pitch.
+% The cues in the hand bars (261-262, 263-264) are copied from the Basso inside \vnHand; the cues
+% in the lifted sections (287-288, 439-440) flow through \vnLift unchanged.
 
 % --- 237-246 hand: B3 B3 / E4 B3 staccato pulses; the octave leap is flattened (see above).
 vnTwoVsecBA = {
@@ -32,14 +34,27 @@ vnTwoVsecBB = {
   b4( e'8) r                    % 254
   \barNumberCheck #255
   R2*6                          % 255-260
-  R2                            % 261: Pfte. cue
-  R2                            % 262: Pfte. cue
+  % 261-262: Pfte. cue, copied from the Basso (printed pitch; \vnHand restores the treble clef).
+  \vnHand {
+    \bassoCue "treble"
+      {
+        \stemUp \slurUp
+        <b' gis''>8^>[(\pfteMark <a' fis''>) <a' fis''>^. <a' fis''>^.] |  % 261
+        <a' fis''>4( <gis' e''>8) r8                                      % 262
+      }
+      { R2 | R2 }
+  }
 }
 
 % --- 263-272 hand: as 237-246 (Vc cue 263-264).
 vnTwoVsecBC = {
   \barNumberCheck #263
-  R2*2                          % 263-264: Vc. cue
+  % 263-264: Vc. cue, copied from the Basso (bass clef, printed pitch; \vnHand restores treble).
+  \vnHand {
+    \bassoCue "bass"
+      { b2^>^\vcMark~ | b2 }
+      { R2 | R2 }
+  }
   \barNumberCheck #265
   b4-.\pp b-.                   % 265
   e'-. b-.
@@ -57,29 +72,8 @@ vnTwoVsecBG = \vnLift \bassoVsecBG
 vnTwoVsecBH = \vnLift \bassoVsecBH
 vnTwoVsecBI = \vnLift \bassoVsecBI
 
-% --- 371-390 lift (A3), hand-entered only to break the 16-bar tie: re-bowed at bar 379 (count 9).
-vnTwoVsecBJ = {
-  \barNumberCheck #371
-  a2\pp^\markup \small "1"~                    % 371
-  a2^\markup \small "2"~
-  a2^\markup \small "3"~
-  a2^\markup \small "4"~
-  a2^\markup \small "5"~
-  a2^\markup \small "6"~                       % 376
-  \barNumberCheck #377
-  a2^\markup \small "7"~                       % 377
-  a2^\markup \small "8"                        % 378: tie ends; new bow at 379
-  a2^\markup \small "9"~                       % 379
-  a2^\markup \small "10"~
-  a2^\markup \small "11"~
-  a2^\markup \small "12"~
-  a2^\markup \small "13"~
-  a2^\markup \small "14"~
-  a2^\markup \small "15"~
-  a2^\markup \small "16"                       % 386
-  \barNumberCheck #387
-  R2*4                          % 387-390
-}
+% --- 371-390 lift (A3): the 16-bar tie is kept as printed.
+vnTwoVsecBJ = \vnLift \bassoVsecBJ
 
 vnTwoVsecBK = \vnLift \bassoVsecBK
 vnTwoVsecBL = \vnLift \bassoVsecBL

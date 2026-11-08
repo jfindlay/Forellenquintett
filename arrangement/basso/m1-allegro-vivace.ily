@@ -7,7 +7,11 @@
 % Notes on the transcription:
 % - Bars 1-146 sit inside the exposition repeat (end-repeat sign after bar 146, footnote "Zum Problem
 %   der Wiederholung vgl. Vorwort"); the part prints no volta brackets.
-% - Rests with cue notes (Pfte./Viol.) in bars 91-93, 163-164, 276-278 are entered as plain rests.
+% - The cues from other parts that the Basso prints over its rests (bars 91-93 Pfte. with 8va, then
+%   Viol.; 163-164 Pfte. with 8va; 276-277 Pfte., 278 Viol., no 8va bracket) are entered as small
+%   notes with \bassoCue. The 8va cues are typed at sounding pitch inside \ottava.
+% - Beams: the print's beaming needs no manual override (LilyPond's default groups match), except
+%   where noted in the bar comments; the sixteenth figures are beamed by hand ([ ]) as printed.
 % - The bar-52 and bar-237 eighths (and 181-188) are triplets: the part prints twelve (or 6+3+3)
 %   unmarked eighths to the bar; the tuplet figure is entered with its "3".
 % - The small ">" after a dynamic (ff>, p>cresc., f>, fp>) is entered as part of a markup.
@@ -121,7 +125,9 @@ bassoIsecC = {
   \barNumberCheck #56
   g,1_>
   gis,1\fp
-  a,2 d2\decresc
+  % The spanner's "decresc." sits at the note's left edge and runs into the pp of bar 59; the print
+  % has it centred under the second note, so it is plain text here.
+  a,2 d2_\markup \italic "decresc."
   e1\pp
   g1->\ff
   gis1\fz
@@ -161,8 +167,18 @@ bassoIsecD = {
 % --- Bars 91-109: cue bars, B/E/C pedals ---------------------------------------------------------
 bassoIsecE = {
   \barNumberCheck #91
-  % Pfte. cue (treble clef, 8va): bars 91-93.
-  R1*3
+  % Pfte. cue (treble clef, 8va bracket over bars 91-93 up to the quarter e), then Viol. in bar 93.
+  % The print gives the notes an octave below sounding; typed here at sounding pitch.
+  \bassoCue "treble"
+    {
+      \stemUp \ottava #1
+      % The print puts the tr directly over the note, under the 8va bracket (and the label above it).
+      \once \override Script.outside-staff-priority = #300
+      dis'''2\pfteMark\trill \grace { cis'''16[ dis'''] } e'''8.^.[ fis'''16^. gis'''8.^. e'''16^.] |
+      cis'''4^. fis'''4^.^> dis'''8.^.[ cis'''16^. dis'''8.^. b''16^.] |
+      e'''4 \ottava #0 r4 b''4\violMark^. b''4^.
+    }
+    { R1 | R1 | R1 }
   b,4\pp b,4 b,4 r4
   e4 e4 gis,2(
   a,2 b,2
@@ -246,8 +262,13 @@ bassoIsecH = {
   c4. c8 c4. c8
   c4 r4 r2
   R1*5
-  % Pfte. cue (treble clef, 8va): bars 163-164.
-  R1*2
+  % Pfte. cue (treble clef, 8va bracket over both bars), typed at sounding pitch.
+  \bassoCue "treble"
+    {
+      \stemUp \slurUp \ottava #1
+      bes'''2.\pfteMark^>( f'''4) | fis'''!2( g'''2) \ottava #0
+    }
+    { R1 | R1 }
 }
 
 % --- Bars 165-180: B-flat pedal, dotted figures --------------------------------------------------
@@ -424,8 +445,15 @@ bassoIsecO = {
   e4 r4 e4 r4
   a,4 r4 r2
   R1*6
-  % Pfte. cue (treble clef, 8va) 276-277, Viol. cue 278.
-  R1*3
+  % Pfte. cue 276-277, Viol. cue 278 (treble clef; the print draws no 8va bracket here).
+  \bassoCue "treble"
+    {
+      \stemUp
+      gis''!2\pfteMark\trill a''8.^.[ b''16^. cis'''8.^. a''16^.] |
+      fis''4^. b''4^.^> gis''8.^.[ fis''16^. gis''8.^. e''16^.] |
+      a''4 r4 e''4\violMark^. e''4^.
+    }
+    { R1 | R1 | R1 }
 }
 
 % --- Bars 279-293: second-theme tail in A, crotchet alternation -----------------------------------

@@ -4,6 +4,9 @@
 % Key signature changes at the double bars: A major (24), D major (36), Ab major (61), C major
 % (84), F major (96). Part footnote on bars 43-44: Stadler's copy differs (see Vorwort); the main
 % printed text is entered. The slurred repeated-note figures are ties; "dim." is plain text.
+% The movement prints no cues (the Basso plays or rests throughout). Beaming is the default
+% beat grouping and matches the print: eighth pairs beam, single eighths over rests are
+% flagged, and each 16th. + 32nd + 8th (or 16th) figure is one beat-group.
 
 % Figure used in bars 114-120 (staccato, slurred, then a 16th rest).
 bassoIIpulseF = { f,16.-.( f,32-. f,16-.) r16 }
@@ -107,7 +110,7 @@ bassoIIsecE = {
   aes2.~ | aes8 r8 g8 r8 aes4 |
   des2.~ |
   \barNumberCheck #77
-  des8 r8 c8 r8 des8 r8 |
+  des8 r8 c8-. r8 des8 r8 |  % bar 77: the print has a staccato dot under the stem-up c8
   aes,8 des8 es2 |
   aes,4\fp r4 r4 | ges4\fp r4 r4 | f4\fp r4 r4 | e4\fp r4 r4 |
   e4\fp r8 e8-.[ e8-. e8-.] |

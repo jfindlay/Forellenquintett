@@ -7,6 +7,15 @@
 % bar is a 3/8 bar; the next variation's pickup eighth completes it. Where the print shows
 % "28a"/"68a" for a first ending, the first and second endings share one bar number, so each
 % second ending resets Score.currentBarNumber.
+%
+% Beams are entered by hand wherever the print differs from LilyPond's 2/4 default (beam groups of
+% a quarter): the print beams all four eighths of a bar as one group in the Thema (bars 10, 15,
+% 19), Var. I, Var. II (bars 49-59), Var. III (61, 65, 73, 77), and Var. V; it leaves the pair of
+% eighths after a quarter unbeamed in Var. III (bars 70-78 slurred figures) and before the last
+% eighth in Var. IV bar 84.
+%
+% The part prints cues in the bars where the Basso rests: the Viol. cues in the Allegretto
+% (bars 133-135, 154-155) are entered with \bassoCue; the other rest bars are plain rests.
 
 % Thema, bars 1-20 (pickup rest, repeat with 1./2. endings).
 bassoIVsecA = {
@@ -31,54 +40,55 @@ bassoIVsecA = {
   \barNumberCheck #9
   a4-.( a8-. a-.) |
   \barNumberCheck #10
-  d8-. d-. fis-. d-. |
+  d8-.[ d-. fis-. d-.] |
   a4-.( a8-. a-.) |
   d'4 r |
   g,4 g,8( b,) |
   d4.( fis8) |
   \barNumberCheck #15
-  a8.-.( a16-. a8-. a-.) |
+  a8.-.[( a16-. a8-. a-.)] |
   d'4 r |
   g,4 g,8( b,) |
   d4.( fis8) |
-  a8.-.( a16-. a8-. a-.) |
+  a8.-.[( a16-. a8-. a-.)] |
   \barNumberCheck #20
   d4. \bar "||"
 }
 
-% Var. I, bars 21-40 (pizz. arpeggios, repeat with 1./2. endings).
+% Var. I, bars 21-40 (pizz. arpeggios, repeat with 1./2. endings). The print beams each bar's
+% four eighths as one group; the 3/8 last bar as one group of three.
 bassoIVsecB = {
   r8
   \repeat volta 2 {
     \showBarNumber
     \barNumberCheck #21
-    d8-.\pzMark\pp d'-. a-. fis-. |
-    d-. a-. fis-. d-. |
-    a,-. cis-. e-. a-. |
-    a,-. cis-. e-. a-. |
-    d-. d'-. a-. fis-. |
-    d-. a-. fis-. d-. |
-    e-. a-. gis-. e-. |
+    d8-.[\pzMark\pp d'-. a-. fis-.] |
+    d-.[ a-. fis-. d-.] |
+    a,-.[ cis-. e-. a-.] |
+    a,-.[ cis-. e-. a-.] |
+    d-.[ d'-. a-. fis-.] |
+    d-.[ a-. fis-. d-.] |
+    e-.[ a-. gis-. e-.] |
   }
   \alternative {
-    { \barNumberCheck #28 a8-. a,-. r a,-. | }
-    { \set Score.currentBarNumber = #28 \barNumberCheck #28 a8-. a,-. r a,-. | }
+    { \barNumberCheck #28 a8-.[ a,-.] r a,-. | }
+    { \set Score.currentBarNumber = #28 \barNumberCheck #28 a8-.[ a,-.] r a,-. | }
   }
   \barNumberCheck #29
-  a,8-. cis-. e-. a-. |
-  d-. fis-. a-. d'-. |
-  a,-. cis-. e-. a-. |
-  d-. fis-. a-. d'-. |
-  g,-. g-. g,-. b,-. |
+  a,8-.[ cis-. e-. a-.] |
+  d-.[ fis-. a-. d'-.] |
+  a,-.[ cis-. e-. a-.] |
+  d-.[ fis-. a-. d'-.] |
+  g,-.[ g-. g,-. b,-.] |
   \barNumberCheck #34
-  d-. d'-. d-. fis-. |
-  a-. e-. cis-. a,-. |
-  d-. d'-. r d-. |
-  g,-. g-. g,-. b,-. |
-  d-. d'-. d-. fis-. |
-  a-. e-. cis-. a,-. |
+  d-.[ d'-. d-. fis-.] |
+  a-.[ e-. cis-. a,-.] |
+  d-.[ d'-.] r d-. |
+  g,-.[ g-. g,-. b,-.] |
+  d-.[ d'-. d-. fis-.] |
+  a-.[ e-. cis-. a,-.] |
   \barNumberCheck #40
-  d-. d'-. d-. \bar "||"
+  d-.[ d'-. d-.] \bar "||"
 }
 
 % Var. II, bars 41-60 (arco, sparse skeleton; repeat with 1./2. endings).
@@ -100,33 +110,34 @@ bassoIVsecC = {
     { \set Score.currentBarNumber = #48 \barNumberCheck #48 a,4 r | }
   }
   \barNumberCheck #49
-  a8.-.( a16-. a8-. a-.) |
+  a8.-.[( a16-. a8-. a-.)] |
   d4. r8 |
   \barNumberCheck #51
-  a8.-.( a16-. a8-. a-.) |
+  a8.-.[( a16-. a8-. a-.)] |
   d4 r |
-  g,8.-.( g,16-. g,8-. b,-.) |
+  g,8.-.[( g,16-. g,8-. b,-.)] |
   d4. r8 |
-  a,8.-.( a,16-. a,8-. a,-.) |
+  a,8.-.[( a,16-. a,8-. a,-.)] |
   d4 r |
-  g,8.-.( g,16-. g,8-. b,-.) |
+  g,8.-.[( g,16-. g,8-. b,-.)] |
   d4. r8 |
-  a,8.-.( a,16-. a,8-. a,-.) |
+  a,8.-.[( a,16-. a,8-. a,-.)] |
   \barNumberCheck #60
   d4. \bar "||"
 }
 
-% Var. III, bars 61-80 (pickup A, then repeat with 1./2. endings).
+% Var. III, bars 61-80 (pickup A, then repeat with 1./2. endings). The slurred figures
+% "d4( a,8) d" (bars 70-78) keep their two eighths unbeamed, as printed.
 bassoIVsecDa = {
   a,8\p
   \repeat volta 2 {
     \showBarNumber
     \barNumberCheck #61
-    d8-. d-. fis-. fis-. |
+    d8-.[ d-. fis-. fis-.] |
     d4 a, |
     a,8. a,16 e16._( d32 cis16. b,32) |
     a,4 r8 a, |
-    d8-. d-. fis-. fis-. |
+    d8-.[ d-. fis-. fis-.] |
     d4 a,8 d |
     e8 r e r |
   }
@@ -136,20 +147,20 @@ bassoIVsecDa = {
   }
   \barNumberCheck #69
   cis8 cis d16_( cis b, cis) |
-  d4( a,8) d |
+  d4( a,8)\noBeam d |
   cis8 cis cis16( g e cis) |
 }
 
 % Bars 72-80: split off so the Vn2 layer can hang the Stadler footnote on bar 72.
 bassoIVsecDb = {
-  d4( d,8) d |
-  b,8 b, b, d |
+  d4( d,8)\noBeam d |
+  b,8[ b, b, d] |
   \barNumberCheck #74
-  d4->( a,8) a, |
+  d4->( a,8)\noBeam a, |
   a,8. a,16 e8 cis |
-  d4( d,8) d |
-  b,8 b, b, d |
-  d4->( a,8) a, |
+  d4( d,8)\noBeam d |
+  b,8[ b, b, d] |
+  d4->( a,8)\noBeam a, |
   a,8. a,16 e8 cis |
   \barNumberCheck #80
   d4. \bar "||"
@@ -159,6 +170,9 @@ bassoIVsecD = { \bassoIVsecDa \bassoIVsecDb }
 
 % Var. IV, bars 81-100 (F major). The pickup A sits after the repeat sign; the repeat covers bars
 % 81-88, and the eighth rest after the repeat bar completes the 3/8 bar 88 on the way out.
+% The print beams the triplets of bars 81-82 and the sextuplets of bar 83 in threes (so two beams
+% per half beat); the single sextuplet run of bar 84 and the 6-note groups of bars 85-86 keep one
+% beam. The a' of bar 84 and the c after it are separate flagged eighths.
 bassoIVsecE = {
   \key f \major
   \override TupletBracket.bracket-visibility = ##f
@@ -166,34 +180,22 @@ bassoIVsecE = {
     a8\ff |
     \showBarNumber
     \barNumberCheck #81
-    % The print beams each bar's triplets in sixes. The \vnBeam-tagged settings beam them in threes
-    % in the Vn2 part (eighth-note beat groups, bars 81-83); basso-proof.ly strips the tag, so the
-    % proof keeps the print's beams.
-    \tag #'vnBeam {
-      \set Timing.baseMoment = #(ly:make-moment 1/8)
-      \set Timing.beatStructure = 1,1,1,1
-    }
-    \tuplet 3/2 { d'16-. gis( a) } \tuplet 3/2 { f'-. cis'( d') }
-      \tuplet 3/2 { a-. e( f) } \tuplet 3/2 { d-. gis,( a,) } |
+    \tuplet 3/2 { d'16-.[ gis( a)] } \tuplet 3/2 { f'-.[ cis'( d')] }
+      \tuplet 3/2 { a-.[ e( f)] } \tuplet 3/2 { d-.[ gis,( a,)] } |
     % Bars 82-83: the print gives no tuplet numbers.
     \override TupletNumber.stencil = ##f
-    \tuplet 3/2 { d'16-. gis( a) } \tuplet 3/2 { f'-. cis'( d') }
-      \tuplet 3/2 { a-. e( f) } \tuplet 3/2 { d-.( f d) } |
-    \tuplet 6/4 { a,16 cis e a, d f } \tuplet 6/4 { a, e g a, f gis } |
+    \tuplet 3/2 { d'16-.[ gis( a)] } \tuplet 3/2 { f'-.[ cis'( d')] }
+      \tuplet 3/2 { a-.[ e( f)] } \tuplet 3/2 { d-.[( f d)] } |
+    \tuplet 6/4 { a,16[ cis e] a,[ d f] } \tuplet 6/4 { a,[ e g] a,[ f gis] } |
     \revert TupletNumber.stencil
-    % The run up to the a' in bar 84 keeps one beam.
-    \tag #'vnBeam {
-      \set Timing.baseMoment = #(ly:make-moment 1/4)
-      \set Timing.beatStructure = 1,1
-    }
     \barNumberCheck #84
-    \tuplet 6/4 { a,16 cis e a cis' e' } a'8 c\pp |
-    f,8 r \tuplet 6/4 { f16 f f f f f } |
-    f8 r \tuplet 6/4 { f16 f f f f f } |
+    \tuplet 6/4 { a,16[ cis e a cis' e'] } a'8\noBeam c\pp |
+    f,8 r \tuplet 6/4 { f16[ f f f f f] } |
+    f8 r \tuplet 6/4 { f16[ f f f f f] } |
     \barNumberCheck #87
-    c16 r \tuplet 3/2 { c c c } c16 r \tuplet 3/2 { c c c } |
+    c16 r \tuplet 3/2 { c[ c c] } c16 r \tuplet 3/2 { c[ c c] } |
     \barNumberCheck #88
-    f16 r \tuplet 3/2 { c c c } f8
+    f16 r \tuplet 3/2 { c[ c c] } f8
   }
   r8
   \barNumberCheck #89
@@ -215,59 +217,68 @@ bassoIVsecE = {
 }
 
 % Var. V, bars 101-127 (Bb major; pickup rest, repeat with 1./2. endings, then the dying-away
-% close with fermata on the last note).
+% close with fermata on the last note). The print beams every bar's four eighths as one group.
 bassoIVsecF = {
   \key bes \major
   r8
   \repeat volta 2 {
     \showBarNumber
     \barNumberCheck #101
-    bes,8-.\pp bes-. bes,-. bes-. |
-    bes,-. bes-. bes,-. bes-. |
-    f, f f, f |
-    f, f f, f |
-    bes, bes bes, bes |
-    bes,8\cresc bes des\!\> des' |
-    c8\p c' c c' |
+    bes,8-.[\pp bes-. bes,-. bes-.] |
+    bes,-.[ bes-. bes,-. bes-.] |
+    f,[ f f, f] |
+    f,[ f f, f] |
+    bes,[ bes bes, bes] |
+    bes,8[\cresc bes des\!\> des'] |
+    c8[\p c' c c'] |
   }
   \alternative {
-    { \barNumberCheck #108 f,8 f f, r | }
-    { \set Score.currentBarNumber = #108 \barNumberCheck #108 f,8 f f, r | }
+    { \barNumberCheck #108 f,8[ f f,] r | }
+    { \set Score.currentBarNumber = #108 \barNumberCheck #108 f,8[ f f,] r | }
   }
   \barNumberCheck #109
-  f,8\pp f f, f |
-  bes, bes bes, bes |
-  aes, aes aes, aes |
-  des des' des des' |
-  ges, ges ges, ges |
-  des des' des des' |
-  aes, aes aes, aes |
-  des des' des des' |
-  ges, ges ges, ges |
-  des des' des des' |
+  f,8[\pp f f, f] |
+  bes,[ bes bes, bes] |
+  aes,[ aes aes, aes] |
+  des[ des' des des'] |
+  ges,[ ges ges, ges] |
+  des[ des' des des'] |
+  aes,[ aes aes, aes] |
+  des[ des' des des'] |
+  ges,[ ges ges, ges] |
+  des[ des' des des'] |
   \barNumberCheck #119
-  aes, aes aes, aes |
-  des8-.( des-. des-. des-.) |
-  aes,8-.(\decresc aes,-. aes,-. aes,-.\!) |
-  des8-.( des-. des-. des-.) |
-  e8-.( e-. e-. e-.) |
-  a,8-.( a,-. a,-. a,-.) |
-  cis8-.(\dim cis-. cis-. cis-.\!) |
-  fis,8-.( fis,-. fis,-. fis,-.) |
-  a,8-.( a,-. a,-. a,-.\fermata) \bar "||"
+  aes,[ aes aes, aes] |
+  des8-.[( des-. des-. des-.)] |
+  aes,8-.[(\decresc aes,-. aes,-. aes,-.\!)] |
+  des8-.[( des-. des-. des-.)] |
+  e8-.[( e-. e-. e-.)] |
+  a,8-.[( a,-. a,-. a,-.)] |
+  cis8-.[(\dim cis-. cis-. cis-.\!)] |
+  fis,8-.[( fis,-. fis,-. fis,-.)] |
+  a,8-.[( a,-. a,-. a,-.\fermata)] \bar "||"
 }
 
-% Allegretto, bars 128-156 (D major; eighth-note pulse under the cello solo).
+% Allegretto, bars 128-156 (D major; eighth-note pulse under the cello solo). Bars 129-133 are a
+% 5-bar rest, the last bar carrying the Viol. pickup d'' (the treble clef shows before the barline
+% of bar 128 here). The print writes the cue pitches in the key of D (c'' sounds C#).
 bassoIVsecG = {
   \key d \major
   \tempo "Allegretto"
   \barNumberCheck #128
   d8 r r4 |
-  % 129-133: Vn cue "Viol." rest bars.
-  R2*5 |
-  % 134-135: Viol. cue bars.
-  R2 |
-  R2 |
+  % 129-135: Viol. cue (pickup d'' in bar 133, bars 134-135 over half rests). The print's "5" counts
+  % bar 133 in the multi-measure rest, so the number text is set by hand.
+  \bassoCue "treble"
+    {
+      s2*4 s4. \stemUp d''8\violMark \stemNeutral |
+      cis''8[( \slashedGrace { cis''16 } b'16 cis'']) d''8->[( b')] |
+      a'4 r |
+    }
+    {
+      \once \override MultiMeasureRestNumber.text = "5"
+      R2*7 |
+    }
   \barNumberCheck #136
   d8\p r d r |
   d r d r |
@@ -280,9 +291,15 @@ bassoIVsecG = {
   a, r a, r |
   % 144-153.
   R2*10 |
-  % 154-155: Viol. cue bars.
-  R2 |
-  R2 |
+  % 154-155: Viol. cue (the clef change stands before the barline of bar 153 in the print).
+  \bassoCue "treble"
+    {
+      \stemUp
+      a''8.^.[^(\violMark a''16^.)] \appoggiatura a''16 e'''8^>[^( cis''')] |
+      d'''4 r |
+      \stemNeutral
+    }
+    { R2*2 | }
   \barNumberCheck #156
   a,8 r a, r |
 }

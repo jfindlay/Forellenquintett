@@ -2,18 +2,19 @@
 % V. Allegro giusto, bars 1-236: Violin II derived from basso/m5a-allegro-giusto-1.ily.
 % Treatments are recorded in notes/m5a-decisions.md. Default is \vnLift; departures are commented.
 
-% Bars 1-10: `high`. E-A pizzicato figure alternates across the fold boundary (E2 would fold to
+% Bars 1-10: `high` (the Vc. cue in bars 1-2 stays at the printed pitch). E-A pizzicato figure alternates across the fold boundary (E2 would fold to
 % E4 and flatten the octave leap); high keeps the low-high alternation E4-E5 / A4-E5, clear of
 % the Vn1/Va tune around D4.
 vnTwoVsecAA = \vnHigh \bassoVsecAA
 
-% Bars 11-26: lift. Only the E2 bars (15-16) fold, to E4.
+% Bars 11-26: lift. Only the E2 bars (15-16) fold, to E4. Bars 25-26 carry the Pfte. cue as printed.
 vnTwoVsecAB = \vnLift \bassoVsecAB
 
 % Bars 27-36: as bars 1-10.
 vnTwoVsecAC = \vnHigh \bassoVsecAC
 
 % Bars 37-52: lift. Tutti ff theme, doubled by Vn1/Va; cello plays the same line an octave below.
+% The Vc. cue in bars 51-52 stays at the printed pitch.
 vnTwoVsecAD = \vnLift \bassoVsecAD
 
 % Bars 53-65: lift, as bars 37-52.
@@ -32,30 +33,8 @@ vnTwoVsecAH = \vnLift \bassoVsecAH
 % Bars 108-134: lift. F# then G pedal and chromatic climb, a rhythmic pulse inside the chord.
 vnTwoVsecAI = \vnLift \bassoVsecAI
 
-% Bars 135-154: lifted by hand (= \vnLift, D3 -> D4) so the tie can be broken once. The pedal
-% runs 16 bars (135-150); per rule 6 it is re-articulated after bar 142 (two 8-bar ties). The
-% printed bar counts 1-16 are kept.
-vnTwoVsecAJ = {
-  \barNumberCheck #135
-  d'2\p^\markup \small "1"~ |
-  d'2^\markup \small "2"~ |
-  d'2^\markup \small "3"~ |
-  d'2^\markup \small "4"~ |
-  d'2^\markup \small "5"~ |
-  d'2^\markup \small "6"~ |
-  d'2^\markup \small "7"~ |
-  d'2^\markup \small "8" |       % tie broken here (re-articulate at bar 143)
-  d'2^\markup \small "9"~ |
-  d'2^\markup \small "10"~ |
-  \barNumberCheck #145
-  d'2^\markup \small "11"~ |
-  d'2^\markup \small "12"~ |
-  d'2^\markup \small "13"~ |
-  d'2^\markup \small "14"~ |
-  d'2^\markup \small "15"~ |
-  d'2^\markup \small "16" |
-  R2*4
-}
+% Bars 135-154: lift (D3 -> D4). The 16-bar tie (135-150) is kept as printed, counts 1-16 included.
+vnTwoVsecAJ = \vnLift \bassoVsecAJ
 
 % Bars 155-164: lift. B-flat/E-flat/C offbeat figures; E-flat 4 and C5 are the highest notes.
 vnTwoVsecAK = \vnLift \bassoVsecAK
@@ -66,7 +45,8 @@ vnTwoVsecAL = \vnLift \bassoVsecAL
 % Bars 171-194: lift. Triplet drive D4 / B3 (lowest), E-F#-G, A, D5-A4.
 vnTwoVsecAM = \vnLift \bassoVsecAM
 
-% Bars 195-204: lift of eight rests plus two cue bars (Va.): Vn2 rests.
+% Bars 195-204: lift of eight rests plus the Va. cue (bars 203-204): the cue notes stay at the
+% printed pitch, over Vn2's rests, and the staff returns to the treble clef after them.
 vnTwoVsecAN = \vnLift \bassoVsecAN
 
 % Bars 205-212: lift. Slurred half notes, lowest G3 (bar 209).

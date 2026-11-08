@@ -2,7 +2,8 @@
 % V. Allegro giusto, 2/4, A major: bars 237-end (the part's page 13 bottom system through p. 15).
 % Bar 236 (the D.C. repeat sign) belongs to the first half. Entered as printed: key A major (set by
 % the first half); accidentals are the note's actual pitch (F#, C#, G# from the key signature, so
-% natural F, C, G are written f, c, g). Cue bars (Pfte., Vc., Va.) are printed rests here.
+% natural F, C, G are written f, c, g). Cue bars (Pfte. 261-262, Vc. 263-264 and 287-288, Va.
+% 439-440) are entered as printed with \bassoCue over the Basso's own rests.
 %
 % Printed bar numbers: 237-472. The repeat 247-262 is a plain |: ... :| (no alternatives); the
 % movement ends with the G.P. bar 472 and the final barline.
@@ -37,14 +38,23 @@ bassoVsecBB = {
   b,4( e8) r                    % 254
   \barNumberCheck #255
   R2*6                          % 255-260
-  R2                            % 261: Pfte. cue
-  R2                            % 262: Pfte. cue
+  % 261-262: Pfte. cue (treble clef, right hand), stems and slurs up as printed.
+  \bassoCue "treble"
+    {
+      \stemUp \slurUp
+      <b' gis''>8^>[(\pfteMark <a' fis''>) <a' fis''>^. <a' fis''>^.] |  % 261
+      <a' fis''>4( <gis' e''>8) r8                                      % 262
+    }
+    { R2 | R2 }
 }
 
 % --- 263-272: second statement of the opening (Vc. cue in 263-264), closed by a double bar.
 bassoVsecBC = {
   \barNumberCheck #263
-  R2*2                          % 263-264: Vc. cue
+  % 263-264: Vc. cue, bass clef (no clef sign printed): accented B tied across the barline.
+  \bassoCue "bass"
+    { b2^>^\vcMark~ | b2 }
+    { R2 | R2 }
   \barNumberCheck #265
   b,4-.\pp b-.                  % 265
   e-. b-.
@@ -70,7 +80,10 @@ bassoVsecBD = {
   \barNumberCheck #281
   R2*6                          % 281-286
   \barNumberCheck #287
-  R2*2                          % 287-288: Vc. cue
+  % 287-288: Vc. cue, bass clef, stems up as printed (D4 leaps down to D3, then G natural).
+  \bassoCue "bass"
+    { \stemUp d'4\vcMark d | g r }
+    { R2 | R2 }
 }
 
 % --- 289-301: the ff figure and answer again, then five rests.
@@ -269,11 +282,19 @@ bassoVsecBM = {
   a,4 r                                                  % 430
 }
 
-% --- 431-440: eight rests, then the Va. cue bars (439-440).
+% --- 431-440: eight rests, then the Va. cue bars (439-440, two triplet groups per bar).
 bassoVsecBN = {
   \barNumberCheck #431
   R2*8                          % 431-438
-  R2*2                          % 439-440: Va. cue
+  % 439-440: Va. cue, bass clef (no clef sign printed), stems and slurs up as printed.
+  \bassoCue "bass"
+    {
+      \stemUp \slurUp \omit TupletNumber \omit TupletBracket \override Rest.direction = #UP
+      % 439: the print's slur starts over the second note, not the accented first one
+      \tuplet 3/2 { r8 cis'^>\vaMark[ b(] } \tuplet 3/2 { a[ gis fis)] } |  % 439
+      \tuplet 3/2 { e8[( fis) e^.] } \tuplet 3/2 { e[( fis) e^.] }          % 440
+    }
+    { R2 | R2 }
 }
 
 % --- 441-460: A, G# half notes slurred to quarters; syncopated A, B, E; two G.P. bars, four rests.

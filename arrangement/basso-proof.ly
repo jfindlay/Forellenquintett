@@ -30,7 +30,7 @@
 }
 \bookpart {
   \header { piece = "IV. Andantino" }
-  \score { \new Staff { \clef bass \compressMMRests \removeWithTag #'vnBeam \bassoIV } \partLayout }
+  \score { \new Staff { \clef bass \compressMMRests \bassoIV } \partLayout }
 }
 \bookpart {
   \header { piece = "V. Allegro giusto" }
