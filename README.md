@@ -50,3 +50,11 @@ Requires LilyPond (2.24.x).
 ./build proof    # diplomatic Basso: output/Forellenquintett basso proof.pdf
 ./build all
 ```
+
+## License
+
+© 2026 Justin Findlay. The arrangement and score are licensed under
+[Creative Commons Attribution 4.0 International](LICENSE)
+(<https://creativecommons.org/licenses/by/4.0/>). Schubert's music is in the public domain.
+The part is adapted from the double bass part of Bärenreiter 5511 (1975), which is in copyright and
+is not distributed here (`source/` is git-ignored).
