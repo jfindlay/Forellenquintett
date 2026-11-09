@@ -173,30 +173,37 @@ bassoIVsecD = { \bassoIVsecDa \bassoIVsecDb }
 % The print beams the triplets of bars 81-82 and the sextuplets of bar 83 in threes (so two beams
 % per half beat); the single sextuplet run of bar 84 and the 6-note groups of bars 85-86 keep one
 % beam. The a' of bar 84 and the c after it are separate flagged eighths.
-bassoIVsecE = {
-  \key f \major
-  \override TupletBracket.bracket-visibility = ##f
-  \repeat volta 2 {
-    a8\ff |
-    \showBarNumber
-    \barNumberCheck #81
-    \tuplet 3/2 { d'16-.[ gis( a)] } \tuplet 3/2 { f'-.[ cis'( d')] }
-      \tuplet 3/2 { a-.[ e( f)] } \tuplet 3/2 { d-.[ gis,( a,)] } |
-    % Bars 82-83: the print gives no tuplet numbers.
-    \override TupletNumber.stencil = ##f
-    \tuplet 3/2 { d'16-.[ gis( a)] } \tuplet 3/2 { f'-.[ cis'( d')] }
-      \tuplet 3/2 { a-.[ e( f)] } \tuplet 3/2 { d-.[( f d)] } |
-    \tuplet 6/4 { a,16[ cis e] a,[ d f] } \tuplet 6/4 { a,[ e g] a,[ f gis] } |
-    \revert TupletNumber.stencil
-    \barNumberCheck #84
-    \tuplet 6/4 { a,16[ cis e a cis' e'] } a'8\noBeam c\pp |
-    f,8 r \tuplet 6/4 { f16[ f f f f f] } |
-    f8 r \tuplet 6/4 { f16[ f f f f f] } |
-    \barNumberCheck #87
-    c16 r \tuplet 3/2 { c[ c c] } c16 r \tuplet 3/2 { c[ c c] } |
-    \barNumberCheck #88
-    f16 r \tuplet 3/2 { c[ c c] } f8
-  }
+% The pickup and bars 81-84 (the flourish) are their own variable so the Vn2 layer can take them
+% an octave higher than the rest of the variation; the split falls inside the repeat, which the
+% Vn2 layer rebuilds around the pieces.
+bassoIVsecEa = {
+  a8\ff |
+  \showBarNumber
+  \barNumberCheck #81
+  \tuplet 3/2 { d'16-.[ gis( a)] } \tuplet 3/2 { f'-.[ cis'( d')] }
+    \tuplet 3/2 { a-.[ e( f)] } \tuplet 3/2 { d-.[ gis,( a,)] } |
+  % Bars 82-83: the print gives no tuplet numbers.
+  \override TupletNumber.stencil = ##f
+  \tuplet 3/2 { d'16-.[ gis( a)] } \tuplet 3/2 { f'-.[ cis'( d')] }
+    \tuplet 3/2 { a-.[ e( f)] } \tuplet 3/2 { d-.[( f d)] } |
+  \tuplet 6/4 { a,16[ cis e] a,[ d f] } \tuplet 6/4 { a,[ e g] a,[ f gis] } |
+  \revert TupletNumber.stencil
+  \barNumberCheck #84
+  \tuplet 6/4 { a,16[ cis e a cis' e'] } a'8\noBeam c\pp |
+}
+
+% Bars 85-88, the rest of the repeated part.
+bassoIVsecEb = {
+  f,8 r \tuplet 6/4 { f16[ f f f f f] } |
+  f8 r \tuplet 6/4 { f16[ f f f f f] } |
+  \barNumberCheck #87
+  c16 r \tuplet 3/2 { c[ c c] } c16 r \tuplet 3/2 { c[ c c] } |
+  \barNumberCheck #88
+  f16 r \tuplet 3/2 { c[ c c] } f8
+}
+
+% Bars 88 (closing rest) to 100, after the repeat.
+bassoIVsecEc = {
   r8
   \barNumberCheck #89
   r8 c8\pp r c |
@@ -213,6 +220,16 @@ bassoIVsecE = {
   a,4\pp a, |
   \barNumberCheck #100
   d4. \bar "||"
+}
+
+bassoIVsecE = {
+  \key f \major
+  \override TupletBracket.bracket-visibility = ##f
+  \repeat volta 2 {
+    \bassoIVsecEa
+    \bassoIVsecEb
+  }
+  \bassoIVsecEc
   \revert TupletBracket.bracket-visibility
 }
 
@@ -262,23 +279,41 @@ bassoIVsecF = {
 % Allegretto, bars 128-156 (D major; eighth-note pulse under the cello solo). Bars 129-133 are a
 % 5-bar rest, the last bar carrying the Viol. pickup d'' (the treble clef shows before the barline
 % of bar 128 here). The print writes the cue pitches in the key of D (c'' sounds C#).
-bassoIVsecG = {
+% Bar 128, and the Viol. cue of bars 129-135 as separate variables so the Vn2 layer can print the cue
+% with its rests at normal staff height (see \bassoCueFlat).
+bassoIVsecGa = {
   \key d \major
   \tempo "Allegretto"
   \barNumberCheck #128
   d8 r r4 |
-  % 129-135: Viol. cue (pickup d'' in bar 133, bars 134-135 over half rests). The print's "5" counts
-  % bar 133 in the multi-measure rest, so the number text is set by hand.
-  \bassoCue "treble"
-    {
-      s2*4 s4. \stemUp d''8\violMark \stemNeutral |
-      cis''8[( \slashedGrace { cis''16 } b'16 cis'']) d''8->[( b')] |
-      a'4 r |
-    }
-    {
-      \once \override MultiMeasureRestNumber.text = "5"
-      R2*7 |
-    }
+}
+
+% Cue (pickup d'' in bar 133, bars 134-135 over half rests) and its rests. The print's "5" counts
+% bar 133 in the multi-measure rest, so the number text is set by hand; the bar line between the
+% 4-bar block and the whole rest of bar 133 is not printed. The grace figure of bar 134 is two
+% beamed 32nds (d'' c'' sharp), not a single slashed note.
+bassoIVcueG = {
+  s2*4 s4. \stemUp d''8\violMark \stemNeutral |
+  \stemUp cis''8[( \grace { \stemDown d''32[ cis''32] \stemNeutral } b'16 cis'']) \stemNeutral
+  d''8->[( b')] |
+  a'4 r |
+}
+
+% The "5" is shifted right so it is centred over the block and the whole rest together.
+bassoIVrestGa = {
+  \once \override MultiMeasureRestNumber.text = "5"
+  \once \override MultiMeasureRestNumber.extra-offset = #'(3.2 . 0)
+  R2*4 \bar "" R2 |
+}
+
+% Bars 134-135.
+bassoIVrestGb = {
+  R2 | R2 |
+}
+
+bassoIVsecGb = \bassoCue "treble" \bassoIVcueG { \bassoIVrestGa \bassoIVrestGb }
+
+bassoIVsecGc = {
   \barNumberCheck #136
   d8\p r d r |
   d r d r |
@@ -295,13 +330,24 @@ bassoIVsecG = {
   \bassoCue "treble"
     {
       \stemUp
-      a''8.^.[^(\violMark a''16^.)] \appoggiatura a''16 e'''8^>[^( cis''')] |
+      % The print draws the grace note's slur to the e''' as a short curve below, ending at the
+      % grace's own height (a''), like a tie.
+      a''8.^.[^(\violMark a''16^.)]
+      \once \override Slur.direction = #DOWN
+      \once \override Slur.positions = #'(2.4 . 2.4)
+      \grace { a''16( } e'''8)^>[^( cis''')] |
       d'''4 r |
       \stemNeutral
     }
     { R2*2 | }
   \barNumberCheck #156
   a,8 r a, r |
+}
+
+bassoIVsecG = {
+  \bassoIVsecGa
+  \bassoIVsecGb
+  \bassoIVsecGc
 }
 
 % Allegretto close, bars 157-172 (ends on the fermata).

@@ -13,7 +13,8 @@
 % - Beams: the print's beaming needs no manual override (LilyPond's default groups match), except
 %   where noted in the bar comments; the sixteenth figures are beamed by hand ([ ]) as printed.
 % - The bar-52 and bar-237 eighths (and 181-188) are triplets: the part prints twelve (or 6+3+3)
-%   unmarked eighths to the bar; the tuplet figure is entered with its "3".
+%   unmarked eighths to the bar; each figure is entered as a tuplet, and the movement prints no "3"
+%   (\omit TupletNumber in bassoI and vnTwoI).
 % - The small ">" after a dynamic (ff>, p>cresc., f>, fp>) is entered as part of a markup.
 % - Bars 1-10 (A pedal) and 11-18 (F pedal) carry the part's printed courtesy counts 1-10 and 1-8
 %   as small text above the notes.
@@ -116,8 +117,8 @@ bassoIsecB = {
 bassoIsecC = {
   \barNumberCheck #52
   \tuplet 3/2 { c8_( _\markup { \dynamic p \italic ">" \italic "cresc." } dis8) dis8-. }
-  \tuplet 3/2 { dis8^( fis8) fis8-. }
-  \tuplet 3/2 { fis8^( a8) a8-. }
+  \tuplet 3/2 { dis8_( fis8) fis8-. }
+  \tuplet 3/2 { fis8_( a8) a8-. }
   \tuplet 3/2 { a8^( c'8) c'8-. }
   e1->\f
   f2.->\fz( fis4)
@@ -449,6 +450,8 @@ bassoIsecO = {
   \bassoCue "treble"
     {
       \stemUp
+      % As in bar 91: the tr sits directly over the note, under the "Pfte." label.
+      \once \override Script.outside-staff-priority = #300
       gis''!2\pfteMark\trill a''8.^.[ b''16^. cis'''8.^. a''16^.] |
       fis''4^. b''4^.^> gis''8.^.[ fis''16^. gis''8.^. e''16^.] |
       a''4 r4 e''4\violMark^. e''4^.
@@ -510,6 +513,7 @@ bassoIsecQ = {
 
 % --- Whole movement: exposition repeat (bars 1-146), no volta brackets are printed ---------------
 bassoI = {
+  \omit TupletNumber
   \repeat volta 2 {
     \bassoIsecA
     \bassoIsecB

@@ -44,7 +44,8 @@
 % system takes the indent, which is where the tempo word sits, as in the printed part; only the
 % first score carries the part name, and no staff carries a short name.
 % The part name also runs in the page header, on the side opposite the page number (neither on
-% page 1, where the title block and staff name already say it).
+% page 1, where the title block and staff name already say it). The page number sits in the outer
+% corner (odd pages: right; even pages: left) and the name in the inner one.
 partName = "Violino II"
 
 \paper {
@@ -61,7 +62,7 @@ partName = "Violino II"
 
 \score {
   \new Staff \with { instrumentName = \partName } {
-    \clef treble \compressMMRests
+    \clef treble
     % \footnote is not rendered from a \header field, so the subtitle carries a literal "*" and the
     % footnote hangs off the first notehead with an empty (invisible) mark, its text opening with "*".
     \footnote \markup \null #'(0 . 1)
@@ -71,7 +72,9 @@ partName = "Violino II"
         under the cello rather than project.
       }
       NoteHead
-    \vnTwoI
+    % \compressMMRests takes one music argument, so it must wrap the movement itself, not the
+    % \footnote above (which would leave every multi-measure rest in the movement expanded).
+    \compressMMRests \vnTwoI
   }
   \partLayout
   % The opus sits in this score's header, not the book's, so it prints once (title page) and the

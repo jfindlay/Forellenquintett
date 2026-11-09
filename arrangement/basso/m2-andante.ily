@@ -50,34 +50,74 @@ bassoIIsecB = {
 
 % Bars 36-52: D major, the dotted 16th figures with the A/F#/D/G octave jumps, ending in the long
 % decrescendo on the D/D2 figure.
-bassoIIsecCa = {
+% The dotted-16th figures whose low note would fold under G3 in the Vn2 lift (bars 41, 43-44, 46,
+% 48-52, 97, 99, 103, 106-113), and the plain-eighth bars that lead into them (40, 42, 96, 98, 102),
+% are separate variables, so the Vn2 layer can take just those bars an octave higher and keep the
+% print's octave jumps and the octave relation between neighbouring bars. The groups are
+% concatenated back into the section variables, so the Basso itself is unchanged.
+% Bars 36-39: eighths and A/A2 figures (these lift without folding).
+bassoIIsecCaA = {
   \key d \major
   \barNumberCheck #36
   d8\fp-. r8 fis8-. r8 d8-. r8 |
   a,16.-. a,32-. a8->~ a16. a,32-. a8->~ a16. a,32-. a8-> |
   d8-. r8 fis8-. r8 d8-. r8 |
   a,16.-. a,32-. a8->~ a16. a,32-. a8->~ a16. a,32-. a8-> |
+}
+
+% Bars 40-42: eighths, the F#/F#2 figure, eighths.
+bassoIIsecCaB = {
   d8 r8 b,8 r8 d8 r8 |
   \barNumberCheck #41
   fis16. fis,32 fis8->~ fis16. fis,32 fis8->~ fis16. fis,32 fis8-> |
   b,8 r8 d8 r8 b,8 r8 |
 }
 
+bassoIIsecCa = {
+  \bassoIIsecCaA
+  \bassoIIsecCaB
+}
+
 % Bars 43-52: the second half of the section, split off so the Vn2 layer can hang the Stadler
 % footnote on bar 43.
-bassoIIsecCb = {
+% Bars 43-44: D/D2 figure (the tie crosses the barline).
+bassoIIsecCbA = {
   d16. d,32 d8->~ d16. d,32 d8->~ d16.\decresc d,32\! d8->~ |
   d16. d,32 d8 d,8 r8 d8 r8 |
+}
+
+% Bar 45: G/G2 figure.
+bassoIIsecCbB = {
   g16. g,32 g8 g,8 r8 g8 r8 |
+}
+
+% Bar 46: F#/F#2 figure.
+bassoIIsecCbC = {
   \barNumberCheck #46
   fis16. fis,32 fis8 fis,8 r8 fis8 r8 |
+}
+
+% Bar 47: G/G2 figure.
+bassoIIsecCbD = {
   g16. g,32 g8 g,8\decresc r8 g8\! r8 |
+}
+
+% Bars 48-52: F#/F#2 figure, then the D/D2 figures to the end of the section.
+bassoIIsecCbE = {
   fis16. fis,32 fis8 fis,8 r8 fis8 r8 |
   d16.\pp ^\markup \italic "dim." d,32 d8~ d16. d,32 d8~ d16. d,32 d8~ |
   d16. d,32 d8~ d16. d,32 d8~ d16. d,32 d8~ |
   \barNumberCheck #51
   d16. d,32 d8~ d16. d,32 d8~ d16.\decresc d,32\! d8~ |
   d16. d,32 d8~ d16. d,32 d8~ d16. d,32 d8 |
+}
+
+bassoIIsecCb = {
+  \bassoIIsecCbA
+  \bassoIIsecCbB
+  \bassoIIsecCbC
+  \bassoIIsecCbD
+  \bassoIIsecCbE
 }
 
 bassoIIsecC = { \bassoIIsecCa \bassoIIsecCb }
@@ -132,20 +172,37 @@ bassoIIsecF = {
 
 % Bars 96-113: F major, the dotted 16th figures with the A/C/F octave jumps, ending in the long
 % decrescendo on the C/C2 figure.
-bassoIIsecG = {
+% Groups as in the section C note above. Bars 96-99: eighths and the C/C2 figures.
+bassoIIsecGA = {
   \key f \major
   \barNumberCheck #96
   f8\fp-. r8 a8-. r8 f8-. r8 |
   c16.-. c,32-. c8->~ c16. c,32-. c8->~ c16. c,32-. c8-> |
   f8-. r8 a8-. r8 f8-. r8 |
   c16.-. c,32-. c8->~ c16. c,32-. c8->~ c16. c,32-. c8-> |
+}
+
+% Bars 100-101: eighths and the A/A2 figure (these lift without folding).
+bassoIIsecGB = {
   f8 r8 d8 r8 f8 r8 |
   \barNumberCheck #101
   a16. a,32 a8->~ a16. a,32 a8->~ a16. a,32 a8-> |
+}
+
+% Bars 102-103: eighths and the F/F2 figure.
+bassoIIsecGC = {
   d8 r8 f8 r8 d8 r8 |
   f16. f,32 f8->~ f16. f,32 f8->~ f16. f,32 f8-> |
+}
+
+% Bars 104-105 (these lift without folding).
+bassoIIsecGD = {
   bes,16. bes,32 bes8->~ bes16. bes,32 bes8->~ bes16. bes,32 bes8-> |
   c'16. c32 c'8 c8 r8 c'8 r8 |
+}
+
+% Bars 106-113: F/E/F/E figures, then the C/C2 figures to the end of the section.
+bassoIIsecGE = {
   \barNumberCheck #106
   f16. f,32 f8 f,8 r8 f8 r8 |
   e16. e,32 e8 e,8\decresc r8 e8\! r8 |
@@ -156,6 +213,14 @@ bassoIIsecG = {
   c16. c,32 c8~ c16. c,32 c8~ c16. c,32 c8~ |
   c16.\decresc c,32\! c8~ c16. c,32 c8~ c16. c,32 c8~ |
   c16. c,32 c8~ c16. c,32 c8~ c16. c,32 c8 |
+}
+
+bassoIIsecG = {
+  \bassoIIsecGA
+  \bassoIIsecGB
+  \bassoIIsecGC
+  \bassoIIsecGD
+  \bassoIIsecGE
 }
 
 % Bars 114-121: the ppp F pulse (all strings pulse), closing on the fermata of bar 121.

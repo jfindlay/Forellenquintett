@@ -48,6 +48,7 @@ vnTwoIsecQ = \vnLift \bassoIsecQ
 
 % Whole movement, same repeat structure as the Basso (exposition repeat after bar 146).
 vnTwoI = {
+  \omit TupletNumber
   \repeat volta 2 {
     \vnTwoIsecA
     \vnTwoIsecB
