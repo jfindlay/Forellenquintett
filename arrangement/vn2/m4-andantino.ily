@@ -17,11 +17,7 @@ vnTwoIVsecC = \vnLift \bassoIVsecC
 % Var. III, bars 61-80: one octave above the lift (two above written; on-beat unison with the cello
 % against the offbeat Vn/Va figures). Up here the D2 of bars 72/76 no longer folds onto the D above
 % it, so the printed octave drop d4( d,8) d stays an octave.
-vnTwoIVsecD = {
-  \vnHigh \bassoIVsecDa
-  \stadlerFootnoteIV
-  \vnHigh \bassoIVsecDb
-}
+vnTwoIVsecD = \vnHigh \bassoIVsecD
 
 % Var. IV, bars 81-100: lift (unison with the cello), except the pickup and bars 81-84 (the rising
 % flourish), which go one octave higher (two above written, ceiling raised to A6 so the top of the

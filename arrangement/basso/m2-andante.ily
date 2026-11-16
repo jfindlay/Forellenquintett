@@ -2,8 +2,8 @@
 % II. Andante, 3/4, F major. Part pp. 6-7, bars 1-121 (system starts: 1, 9, 17, 24, 30, 36, 41,
 % 46, 51, 54, 57 | 61, 69, 77, 84, 90, 96, 101, 106, 111, 115, 118).
 % Key signature changes at the double bars: A major (24), D major (36), Ab major (61), C major
-% (84), F major (96). Part footnote on bars 43-44: Stadler's copy differs (see Vorwort); the main
-% printed text is entered. The slurred repeated-note figures are ties; "dim." is plain text.
+% (84), F major (96). The part's footnote on bars 43-44 (Stadler's copy, see Vorwort) is not
+% entered; the main printed text is. The slurred repeated-note figures are ties; "dim." is plain text.
 % The movement prints no cues (the Basso plays or rests throughout). Beaming is the default
 % beat grouping and matches the print: eighth pairs beam, single eighths over rests are
 % flagged, and each 16th. + 32nd + 8th (or 16th) figure is one beat-group.
@@ -78,8 +78,6 @@ bassoIIsecCa = {
   \bassoIIsecCaB
 }
 
-% Bars 43-52: the second half of the section, split off so the Vn2 layer can hang the Stadler
-% footnote on bar 43.
 % Bars 43-44: D/D2 figure (the tie crosses the barline).
 bassoIIsecCbA = {
   d16. d,32 d8->~ d16. d,32 d8->~ d16.\decresc d,32\! d8->~ |

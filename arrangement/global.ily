@@ -140,64 +140,6 @@ partLayout = \layout {
 % variation's pickup eighth (21, 41, ...), which sits on a line the number would not otherwise start.
 showBarNumber = \once \override Score.BarNumber.break-visibility = ##(#t #t #t)
 
-% Part footnotes (Stadler's copy). Both are Vorwort-referenced notes the Basso prints at the foot
-% of the page; the Vn2 part sits an octave above, so the examples are engraved in treble clef at
-% the Vn2 pitch. \footnote prints no mark in front of the text, so the text opens with it.
-footnoteExampleLayout = \layout {
-  indent = 0
-  ragged-right = ##t
-  \context {
-    \Staff
-    \override TimeSignature.stencil = ##f
-  }
-  \context {
-    \Score
-    \omit BarNumber
-  }
-}
-
-% Anchor on the next grob of the given name. The mark floats `offset` above/beside it; the part
-% prints it above the staff, so the y offsets are tuned to the pitch of the anchor note and clear
-% the top staff line (the leader line to the mark is switched off in partLayout).
-partFootnote = #(define-music-function (offset grob text) (number-pair? symbol-list-or-music? markup?)
-  #{ \footnote "*)" #offset #text #grob #})
-
-% The y offset is per footnote: it depends on the pitch of the anchor note (see above).
-stadlerFootnote = #(define-music-function (offset text) (number-pair? markup?)
-  #{ \partFootnote #offset NoteHead #text #})
-
-% II. Andante, bars 43-44 (anchor D5, high in the staff, so the mark needs a smaller offset).
-stadlerFootnoteII = \stadlerFootnote #'(0 . 2.8) \markup \small \wordwrap {
-  "*) T. 43-44, in Albert Stadlers Abschrift:"
-  \concat {
-    \score {
-      \new Staff \with { fontSize = #-3 \override StaffSymbol.staff-space = #(magstep -3) } {
-        \clef treble \key d \major \time 3/4
-        d'16.[ d'32 d'8~] d'16.[ d'32 d'8~] d'16.[ d'32 d'8~] \bar "|"
-        d'16.[ d'32 d'8] d'8 r d' r \bar "|"
-      }
-      \footnoteExampleLayout
-    }
-    ";"
-  }
-  "entsprechend in den Takten 49-52, 97, 99, 107, 109, 110-113; vgl. Vorwort."
-}
-
-% I. Allegro vivace, bar 146 (end of the exposition repeat).
-repeatFootnote = \partFootnote #'(0.5 . 2) Rest \markup \small "*) Zum Problem der Wiederholung vgl. Vorwort."
-
-% IV. Andantino, Var. III, bars 72 and 76.
-stadlerFootnoteIV = \stadlerFootnote #'(0 . 0.4) \markup \small \wordwrap {
-  "*) Takte 72, 76, in Stadlers Abschrift"
-  \score {
-    \new Staff \with { fontSize = #-3 \override StaffSymbol.staff-space = #(magstep -3) } {
-      \clef treble \key d \major \time 2/4
-      d'4. d'8 \bar "|"
-    }
-    \footnoteExampleLayout
-  }
-}
-
 % Bar-number gate: the Bärenreiter part prints a bar number at the start of every system. Each
 % movement file ends sections with \barNumberCheck at those printed numbers; a clean compile has
 % zero barNumberCheck warnings.

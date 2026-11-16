@@ -5,8 +5,8 @@
 % 242, 251, 258, 266, 279, 287, 294, 299, 304, 312.
 %
 % Notes on the transcription:
-% - Bars 1-146 sit inside the exposition repeat (end-repeat sign after bar 146, footnote "Zum Problem
-%   der Wiederholung vgl. Vorwort"); the part prints no volta brackets.
+% - Bars 1-146 sit inside the exposition repeat (end-repeat sign after bar 146); the part prints no volta
+%   brackets. The part's footnote on the repeat (see Vorwort) is not entered.
 % - The cues from other parts that the Basso prints over its rests (bars 91-93 Pfte. with 8va, then
 %   Viol.; 163-164 Pfte. with 8va; 276-277 Pfte., 278 Viol., no 8va bracket) are entered as small
 %   notes with \bassoCue. The 8va cues are typed at sounding pitch inside \ottava.
@@ -213,7 +213,7 @@ bassoIsecF = {
 }
 
 % --- Bars 125-146: end of the exposition (repeat sign after 146) -----------------------------------
-bassoIsecGa = {
+bassoIsecG = {
   \barNumberCheck #125
   cis8\f r8 dis8 r8 e8 r8 r4
   a,8\p r8 b,8 r8 e8 r8 r4
@@ -238,15 +238,8 @@ bassoIsecGa = {
   b4-> r8. b,16\cresc b4-> r8. b,16
   b4->\ff r8. b,16 b4-> r8. b,16
   e4 e,4\fz
-}
-
-% The closing half-rest of bar 146, split off so the Vn2 layer can hang the repeat footnote on it
-% (a \footnote anchor only catches a grob at the very moment it is placed).
-bassoIsecGb = {
   r2
 }
-
-bassoIsecG = { \bassoIsecGa \bassoIsecGb }
 
 % --- Bars 147-164: development opens, dotted C/B pedal, rests with Pfte. cue -----------------------
 bassoIsecH = {

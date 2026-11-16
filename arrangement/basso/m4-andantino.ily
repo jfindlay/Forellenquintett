@@ -128,7 +128,7 @@ bassoIVsecC = {
 
 % Var. III, bars 61-80 (pickup A, then repeat with 1./2. endings). The slurred figures
 % "d4( a,8) d" (bars 70-78) keep their two eighths unbeamed, as printed.
-bassoIVsecDa = {
+bassoIVsecD = {
   a,8\p
   \repeat volta 2 {
     \showBarNumber
@@ -149,10 +149,6 @@ bassoIVsecDa = {
   cis8 cis d16_( cis b, cis) |
   d4( a,8)\noBeam d |
   cis8 cis cis16( g e cis) |
-}
-
-% Bars 72-80: split off so the Vn2 layer can hang the Stadler footnote on bar 72.
-bassoIVsecDb = {
   d4( d,8)\noBeam d |
   b,8[ b, b, d] |
   \barNumberCheck #74
@@ -165,8 +161,6 @@ bassoIVsecDb = {
   \barNumberCheck #80
   d4. \bar "||"
 }
-
-bassoIVsecD = { \bassoIVsecDa \bassoIVsecDb }
 
 % Var. IV, bars 81-100 (F major). The pickup A sits after the repeat sign; the repeat covers bars
 % 81-88, and the eighth rest after the repeat bar completes the 3/8 bar 88 on the way out.

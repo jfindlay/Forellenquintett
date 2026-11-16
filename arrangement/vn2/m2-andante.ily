@@ -23,7 +23,6 @@ vnTwoIIsecB = \vnLift \bassoIIsecB
 vnTwoIIsecC = {
   \vnLift \bassoIIsecCaA
   \vnHigh \bassoIIsecCaB
-  \stadlerFootnoteII
   \vnHigh \bassoIIsecCbA
   \vnLift \bassoIIsecCbB
   \vnHigh \bassoIIsecCbC
