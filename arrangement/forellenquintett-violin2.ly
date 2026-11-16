@@ -67,9 +67,8 @@ partName = "Violino II"
     % footnote hangs off the first notehead with an empty (invisible) mark, its text opening with "*".
     \footnote \markup \null #'(0 . 1)
       \markup \small \italic \wordwrap {
-        * For piano and string quartet. Violino II plays the double bass line an octave above the
-        cello (notes below G3 are folded up). Dynamics are the Basso's, as ensemble levels: blend
-        under the cello rather than project.
+        * For piano and string quartet. Violino II plays the double bass line an octave or two above
+        the cello. Think like a bass but play like a violin.
       }
       NoteHead
     % \compressMMRests takes one music argument, so it must wrap the movement itself, not the
