@@ -51,7 +51,8 @@ vnTwoIIsecG = {
   \vnHigh \bassoIIsecGE
 }
 
-% Bars 114-121: lift (F pulse sounds F4, above Vn1's low pulses; see the decision table).
+% Bars 114-121: lift (F pulse sounds F4, above Vn1's low pulses; see the decision table in
+% Arranging details.md).
 vnTwoIIsecH = \vnLift \bassoIIsecH
 
 vnTwoII = {
